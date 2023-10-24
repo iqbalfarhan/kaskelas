@@ -1,0 +1,33 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\Kelas;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+
+class KelasSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        $datas = [
+            [
+                'name' => 'XI-1',
+                'angkatan' => '2023/2024',
+                'walikelas' => '...'
+            ],
+            [
+                'name' => 'XI-2',
+                'angkatan' => '2023/2024',
+                'walikelas' => '...'
+            ]
+        ];
+
+        foreach ($datas as $data) {
+            Kelas::create($data);
+        }
+    }
+}
