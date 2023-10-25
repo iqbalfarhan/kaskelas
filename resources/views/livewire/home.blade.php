@@ -1,7 +1,7 @@
 <div class="space-y-6">
     <div class="flex justify-between flex-col lg:flex-row lg:items-center gap-6">
         @livewire('partial.header', [
-            'title' => "Kas kelas ".$kelas->name
+            'title' => "Kas kelas "
         ])
 
         <div class="flex gap-3">
@@ -19,14 +19,14 @@
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <div class="stats shadow w-full">
             <div class="stat">
-                <div class="stat-title">Saldo kelas</div>
+                <div class="stat-title">Saldo kas kelas</div>
                 <div class="stat-value">
                     <div class="flex gap-2">
                         <small>Rp.</small>
                         <span>{{ KasKelas::money($kelas->saldo) }}</span>
                     </div>
                 </div>
-                <div class="stat-desc">Dalam kas kelas</div>
+                <div class="stat-desc">Per bulan {{ date('F Y') }}</div>
             </div>
         </div>
         <div class="stats shadow w-full">
@@ -38,7 +38,7 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         @livewire('widget.belum-bayar', ['bulan' => $bulan, 'kelas_id' => $kelas->id])
         @livewire('widget.sudah-bayar', ['bulan' => $bulan, 'kelas_id' => $kelas->id])
     </div>

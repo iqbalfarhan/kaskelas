@@ -26,6 +26,7 @@ class PermissionSeeder extends Seeder
             'kelas.show',
             'kelas.edit',
             'kelas.delete',
+            'kelas.pilih',
 
             'transaksi.index',
             'transaksi.masuk',

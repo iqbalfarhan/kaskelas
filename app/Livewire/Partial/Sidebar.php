@@ -19,6 +19,7 @@ class Sidebar extends Component
         return Request::route()->getName() == $routename ? 'active' : '';
     }
 
+    #[On('logout')]
     public function logout()
     {
         Auth::logout();

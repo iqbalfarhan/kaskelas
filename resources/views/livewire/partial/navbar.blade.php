@@ -1,13 +1,15 @@
 <div class="navbar bg-base-100">
-    <div class="flex-none">
-        <label class="btn btn-square btn-ghost" for="drawer">
+    <div class="navbar-start">
+        <label class="btn btn-square btn-ghost lg:hidden" for="drawer">
             <x-tabler-menu />
         </label>
     </div>
-    <div class="flex-1">
-        <a href="{{ route('home') }}" class="btn btn-ghost normal-case text-xl">{{ config('app.name') }}</a>
+    <div class="navbar-center">
+        <a href="{{ route('home') }}" class="btn btn-ghost normal-case text-xl">
+            <span>{{ config('app.name') }}</span>
+        </a>
     </div>
-    <div class="flex-none">
+    <div class="navbar-end">
         <a href="{{ route('profile') }}" class="btn btn-ghost" wire:navigate>
             <div class="flex-col items-end hidden lg:flex">
                 <span class="font-semibold text-sm normal-case">{{ auth()->user()->name }}</span>

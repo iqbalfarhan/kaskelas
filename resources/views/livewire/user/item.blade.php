@@ -1,20 +1,21 @@
 <div class="card card-compact shadow bg-base-100">
     <div class="card-body flex flex-col lg:flex-row gap-4 justify-between lg:items-center">
         <a href="{{ route('user.show', $user->id) }}" class="flex flex-row gap-4" wire:navigate>
-            <div class="avatar placeholder">
-                <div class="w-16 aspect-square rounded-full bg-neutral-focus text-neutral-content">
-                    <span class="text-lg">{{ $user->initial }}</span>
+            <div>
+                <div class="avatar placeholder">
+                    <div class="w-16 aspect-square rounded-full bg-neutral-focus text-neutral-content">
+                        <span class="text-lg">{{ $user->initial }}</span>
+                    </div>
                 </div>
             </div>
             <div class="flex-1 flex flex-col">
                 <div class="text-lg font-semibold">
                     {{ $user->name }}
-                    <button class="badge badge-sm btn-primary">
-                        {{ implode(', ', $user->getRoleNames()->toArray()) }}
-                    </button>
                 </div>
-                <span class="text-sm opacity-75">Kelas : {{ $user->kelas->name ?? "tidak ada" }}</span>
-                <span class="text-sm opacity-75">NIS  : {{ $user->nis }}</span>
+                <span class="text-sm opacity-75">{{ $user->nis }} &bull; Kelas : {{ $user->kelas->name ?? "tidak ada" }}</span>
+                <button class="badge badge-sm btn-primary">
+                    {{ implode(', ', $user->getRoleNames()->toArray()) }}
+                </button>
             </div>
         </a>
 

@@ -10,6 +10,23 @@ class Home extends Component
     public $kelas_id;
     public $bulan;
 
+    public function updatedKelasId()
+    {
+        $this->sendEmit();
+    }
+
+    public function updatedBulan()
+    {
+        $this->sendEmit();
+    }
+
+    public function sendEmit(){
+        $this->dispatch('reloadWidget', [
+            $this->kelas_id,
+            $this->bulan
+        ]);
+    }
+
     public function mount()
     {
         $this->kelas_id = auth()->user()->kelas_id ?? Kelas::first()->id;
