@@ -1,5 +1,18 @@
 <ul class="menu p-4 w-80 min-h-full bg-base-100 text-base-content space-y-4">
     <li>
+        <div class="flex justify-center items-center">
+            <div class="avatar">
+                <div class="w-12">
+                    <img src="{{ url('YouFi.png') }}" alt="" class="">
+                </div>
+            </div>
+            <div>
+                <div class="text-lg font-semibold">{{ config('app.name') }}</div>
+                <div class="text-xs opacity-70">{{ config('app.tagline') }}</div>
+            </div>
+        </div>
+    </li>
+    <li>
         <h2 class="menu-title">Halaman utama</h2>
         <ul>
             <li>
@@ -34,7 +47,7 @@
                 <li>
                 <a href="{{ route('transaksi.index') }}" class="{{ $this->isActive('transaksi.index') }}" wire:navigate>
                     <x-tabler-list class="h-4 w-4" />
-                    <span>Riwayat</span>
+                    <span>Riwayat kas</span>
                 </a>
             </li>
             @endcan
@@ -42,7 +55,7 @@
                 <li>
                 <a href="{{ route('transaksi.masuk') }}" class="{{ $this->isActive('transaksi.masuk') }}" wire:navigate>
                     <x-tabler-circle-plus class="h-4 w-4" />
-                    <span>Pemasukan</span>
+                    <span>Pemasukan kas</span>
                 </a>
             </li>
             @endcan
@@ -50,7 +63,7 @@
             <li>
                 <a href="{{ route('transaksi.keluar') }}" class="{{ $this->isActive('transaksi.keluar') }}" wire:navigate>
                     <x-tabler-circle-minus class="h-4 w-4" />
-                    <span>Pengeluaran</span>
+                    <span>Pengeluaran kas</span>
                 </a>
             </li>
             @endcan

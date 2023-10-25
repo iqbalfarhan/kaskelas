@@ -14,6 +14,7 @@ class Keluar extends Component
     public $kelas_id;
     public $tipe = 'keluar';
     public $kategori;
+    public $bulan;
     public $nominal;
     public $keterangan;
 
@@ -25,6 +26,7 @@ class Keluar extends Component
             'tipe' => 'required',
             'kategori' => 'required',
             'nominal' => 'required',
+            'bulan' => 'required',
             'keterangan' => 'required',
         ]);
 
@@ -34,6 +36,10 @@ class Keluar extends Component
         } else {
             return $this->alert('error', 'Pemasukan gagal disimpan');
         }
+    }
+
+    public function mount(){
+        $this->bulan = date('Y-m');
     }
 
     public function render()

@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>{{ $title ?? config('app.name') }}</title>
+        <link rel="shortcut icon" href="{{ url('YouFi.png') }}" type="image/x-icon">
 
         @livewireStyles
 
@@ -18,6 +19,8 @@
                     @livewire('partial.navbar')
                     <div class="container mx-auto max-w-6xl p-6">
                         {{ $slot }}
+
+                        @livewire('partial.footer')
                     </div>
                 </div> 
                 <div class="drawer-side">

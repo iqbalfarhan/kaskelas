@@ -12,6 +12,7 @@ class Masuk extends Component
 {
     use LivewireAlert;
     public $kelas_id;
+    public $bulan;
     public $user_id;
     public $tipe = 'masuk';
     public $kategori = 'rutin';
@@ -27,6 +28,7 @@ class Masuk extends Component
             'tipe' => 'required',
             'kategori' => 'required',
             'nominal' => 'required',
+            'bulan' => 'required',
             'keterangan' => 'required',
         ]);
 
@@ -36,6 +38,11 @@ class Masuk extends Component
         } else {
             return $this->alert('error', 'Pemasukan gagal disimpan');
         }
+    }
+
+    public function mount(){
+        $this->bulan = date('Y-m');
+        $this->kelas_id = auth()->user()->kelas_id ?? Kelas::first()->id;
     }
 
     public function render()

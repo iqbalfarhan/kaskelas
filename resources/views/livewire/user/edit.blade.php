@@ -6,7 +6,7 @@
             <div class="py-4">
                 <div class="form-control">
                     <label for="" class="label">
-                        <span class="label-text">Role</span>
+                        <span class="label-text">Privilege</span>
                     </label>
                     <select type="text" class="select select-bordered" wire:model="role">
                         <option value="">---</option>

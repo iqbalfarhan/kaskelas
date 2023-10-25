@@ -20,7 +20,9 @@ class Index extends Component
 
     public function render()
     {
-        $datas = User::when($this->cari, function ($q) {
+        $datas = User::whereHas('roles', function($role){
+            $role->whereIn('name', ['siswa', 'bendahara']);
+        })->when($this->cari, function ($q) {
             $q->where('name', 'like', '%' . $this->cari . '%')->orWhere('nis', 'like', '%' . $this->cari . '%');
         })->when($this->kelas_id, function ($q) {
             $q->where('kelas_id', $this->kelas_id);

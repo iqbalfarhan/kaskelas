@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Casts\Bulan;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Transaksi extends Model
 {
@@ -14,8 +16,13 @@ class Transaksi extends Model
         'user_id',
         'tipe',
         'kategori',
+        'bulan',
         'nominal',
         'keterangan',
+    ];
+
+    protected $casts = [
+        'bulan' => Bulan::class,
     ];
 
     public function user()

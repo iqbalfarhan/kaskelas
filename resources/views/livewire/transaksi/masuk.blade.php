@@ -2,25 +2,27 @@
     <div class="flex justify-between items-center">
         @livewire('partial.header', [
             'title' => 'Input pemasukan',
-            'desc' => 'tambah kas kelas'
+            'desc' => 'tambah kas kelas '.$kelases[$kelas_id]
         ])
     </div>
     <div class="card bg-base-100 shadow">
         <form class="card-body" wire:submit.prevent="simpan">
-            <div class="grid lg:grid-cols-3 gap-4">
-                <div class="form-control w-full">
-                    <label for="" class="label">
-                        <span class="label-text">Pilih kelas</span>
-                    </label>
-                    <select wire:model.live="kelas_id" class="select select-bordered @error('kelas_id') select-error @enderror">
-                        <option value="">---</option>
-                        @foreach ($kelases as $kelasid => $kelasname)
-                            <option value="{{ $kelasid }}">{{ $kelasname }}</option>
-                        @endforeach
-                    </select>
+            @can('kelas.pilih')
+                <div class="grid lg:grid-cols-3 gap-4">
+                    <div class="form-control w-full">
+                        <label for="" class="label">
+                            <span class="label-text">Pilih kelas</span>
+                        </label>
+                        <select wire:model.live="kelas_id" class="select select-bordered @error('kelas_id') select-error @enderror">
+                            <option value="">---</option>
+                            @foreach ($kelases as $kelasid => $kelasname)
+                                <option value="{{ $kelasid }}">{{ $kelasname }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="grid lg:grid-cols-3 gap-4">
+            @endcan
+            <div class="grid lg:grid-cols-2 gap-4">
                 <div class="form-control w-full">
                     <label for="" class="label">
                         <span class="label-text">Pilih siswa</span>
@@ -55,7 +57,13 @@
                         <input type="number" step="1" wire:model.live="nominal" class="input join-item w-full input-bordered @error('nominal') input-error @enderror" placeholder="0" />
                     </div>
                 </div>
-                <div class="form-control w-full lg:col-span-3">
+                <div class="form-control">
+                    <label for="" class="label">
+                        <span class="label-text">Pembayaran kas bulan</span>
+                    </label>
+                    <input type="month" wire:model.live="bulan" class="input input-bordered @error('bulan') input-error @enderror" />
+                </div>
+                <div class="form-control w-full lg:col-span-2">
                     <label for="" class="label">
                         <span class="label-text">Keterangan</span>
                     </label>

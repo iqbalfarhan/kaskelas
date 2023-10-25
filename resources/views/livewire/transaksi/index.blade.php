@@ -7,13 +7,15 @@
     </div>
 
     <div class="flex gap-2">
-        <input type="month" class="input input-bordered">
+        <input type="month" class="input input-bordered" wire:model.live='bulan'>
+        @can('kelas.pilih')
         <select wire:model.live="kelas_id" class="select select-bordered @error('kelas_id') select-error @enderror">
             <option value="">---</option>
             @foreach ($kelases as $kelasid => $kelasname)
                 <option value="{{ $kelasid }}">{{ $kelasname }}</option>
             @endforeach
         </select>
+        @endcan
     </div>
 
     <div class="overflow-x-auto bg-base-100 shadow rounded-lg">
@@ -24,6 +26,7 @@
                 <th>kelas</th>
                 <th>siswa</th>
                 <th>Nominal</th>
+                <th>kategori</th>
                 <th>keterangan</th>
             </thead>
             <tbody>
@@ -33,12 +36,13 @@
                         <td>{{ $data->created_at->format('H:i') }}</td>
                         <td>{{ $data->kelas->name }}</td>
                         <td>{{ $data->user->name ?? "" }}</td>
-                        <td>
+                        <td class="{{ $data->tipe == "masuk" ? 'text-success' : 'text-error' }}">
                             <div class="flex justify-between">
                                 <span>Rp.</span>
                                 <span>{{ $data->tipe == "masuk" ? '+' : '-' }}{{ KasKelas::money($data->nominal) }}</span>
                             </div>
                         </td>
+                        <td>{{ $data->kategori }}</td>
                         <td>{{ Str::limit($data->keterangan, 40) }}</td>
                     </tr>
                 @endforeach

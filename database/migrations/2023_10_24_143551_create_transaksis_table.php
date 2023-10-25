@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->foreignId('user_id')->nullable();
             $table->enum('tipe', ['masuk', 'keluar'])->default('masuk');
             $table->string('kategori')->nullable();
+            $table->string('bulan')->nullable();
             $table->string('nominal')->nullable();
             $table->text('keterangan')->nullable();
             $table->timestamps();

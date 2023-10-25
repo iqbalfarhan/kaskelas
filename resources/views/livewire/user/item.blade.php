@@ -7,16 +7,18 @@
                 </div>
             </div>
             <div class="flex-1 flex flex-col">
-                <div class="text-lg font-semibold">{{ $user->name }}</div>
+                <div class="text-lg font-semibold">
+                    {{ $user->name }}
+                    <button class="badge badge-sm btn-primary">
+                        {{ implode(', ', $user->getRoleNames()->toArray()) }}
+                    </button>
+                </div>
                 <span class="text-sm opacity-75">Kelas : {{ $user->kelas->name ?? "tidak ada" }}</span>
                 <span class="text-sm opacity-75">NIS  : {{ $user->nis }}</span>
             </div>
         </a>
 
         @if ($withActions)
-            <button class="badge badge-sm btn-ghost">
-                {{ implode(', ', $user->getRoleNames()->toArray()) }}
-            </button>
             <div class="flex gap-1 items-center">
                 <label for="editModal" class="btn btn-sm btn-success btn-square">
                     <x-tabler-edit class="w-4 h-4" />

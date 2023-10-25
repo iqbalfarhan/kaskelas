@@ -1,23 +1,31 @@
 <div class="space-y-6">
     <div class="flex justify-between items-center">
         @livewire('partial.header', [
-            'title' => 'Input pemasukan',
-            'desc' => 'tambah kas kelas'
+            'title' => 'Input pengeluaran',
+            'desc' => 'penggunaan uang kas kelas'
         ])
     </div>
     <div class="card bg-base-100 shadow">
         <form class="card-body" wire:submit.prevent="simpan">
             <div class="grid lg:grid-cols-3 gap-4">
+                @can('kelas.pilih')
+                    <div class="form-control w-full">
+                        <label for="" class="label">
+                            <span class="label-text">Pilih kelas</span>
+                        </label>
+                        <select wire:model="kelas_id" class="select select-bordered @error('kelas_id') select-error @enderror">
+                            <option value="">---</option>
+                            @foreach ($kelases as $kelasid => $kelasname)
+                                <option value="{{ $kelasid }}">{{ $kelasname }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                @endcan
                 <div class="form-control w-full">
                     <label for="" class="label">
-                        <span class="label-text">Pilih kelas</span>
+                        <span class="label-text">Bulan</span>
                     </label>
-                    <select wire:model="kelas_id" class="select select-bordered @error('kelas_id') select-error @enderror">
-                        <option value="">---</option>
-                        @foreach ($kelases as $kelasid => $kelasname)
-                            <option value="{{ $kelasid }}">{{ $kelasname }}</option>
-                        @endforeach
-                    </select>
+                    <input type="month" wire:model="bulan" class="input input-bordered @error('bulan') input-error @enderror">
                 </div>
                 <div class="form-control w-full">
                     <label for="" class="label">

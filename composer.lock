@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "127edd589bc2871357083da7f4c9f463",
+    "content-hash": "48f9cf37cf62cf81bb1138d31dd0f1cf",
     "packages": [
         {
             "name": "blade-ui-kit/blade-icons",
@@ -1050,6 +1050,57 @@
                 }
             ],
             "time": "2023-08-27T10:19:19+00:00"
+        },
+        {
+            "name": "iqbalfarhan08/telegramtools",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/iqbalfarhan/TelegramTools.git",
+                "reference": "b5c1473b8f50055d2bb3430663f76a0ac4827b3a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/iqbalfarhan/TelegramTools/zipball/b5c1473b8f50055d2bb3430663f76a0ac4827b3a",
+                "reference": "b5c1473b8f50055d2bb3430663f76a0ac4827b3a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "\\Iqbalfarhan08\\Telegramtools\\TelegramToolServiceProvider"
+                    ],
+                    "aliases": {
+                        "Telegramtools": "Iqbalfarhan08\\Telegramtools\\Traits\\TelegramTrait"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Illuminate\\Config\\": "",
+                    "Iqbalfarhan08\\Telegramtools\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Iqbal Farhan",
+                    "email": "iqbalfarhan1996@gmail.com"
+                }
+            ],
+            "description": "simple telegram bot features",
+            "support": {
+                "issues": "https://github.com/iqbalfarhan/TelegramTools/issues",
+                "source": "https://github.com/iqbalfarhan/TelegramTools/tree/v1.1.0"
+            },
+            "time": "2023-10-24T03:29:20+00:00"
         },
         {
             "name": "jantinnerezo/livewire-alert",

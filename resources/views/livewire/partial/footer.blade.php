@@ -1,7 +1,12 @@
-<div class="flex justify-center pt-10">
+<div class="flex justify-center pt-10 opacity-70">
     <p class="text-sm">
-        Aplikasi {{ config('app.name') }} telkom regional VI.
-        <label for="loginModal" class="text-primary">login</label>
+        Masuk sebagai {{ $user->name }}
+        (
+            {{ $user->getRoleNames()->first() }}
+            @if ($user->kelas)
+                kelas {{ $user->kelas->name  }}
+            @endif
+        )</p>
     </p>
 
     <span class="badge-success"></span>
