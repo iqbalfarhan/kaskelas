@@ -9,6 +9,8 @@ class Show extends Component
 {
     public User $user;
 
+    protected $listeners = ['reload' => '$refresh'];
+
     public function render()
     {
         return view('livewire.user.show', [

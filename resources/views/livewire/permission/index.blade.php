@@ -6,7 +6,7 @@
         ])
 
         <div>
-            <label for="createModal" class="btn btn-ghost">
+            <label for="createModal" class="btn">
                 <x-tabler-plus class="w-5 h-5" />
                 <span>create permission</span>
             </label>

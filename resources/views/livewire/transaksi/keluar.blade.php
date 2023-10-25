@@ -34,7 +34,7 @@
                     <label for="" class="label">
                         <span class="label-text">Nominal</span>
                         @if ($nominal)
-                        <span class="label-text-alt">Rp. {{ $nominal }}</span>
+                        <span class="label-text-alt">Rp. {{ KasKelas::money($nominal) }}</span>
                         @endif
                     </label>
                     <div class="join w-full bordered">

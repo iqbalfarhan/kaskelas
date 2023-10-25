@@ -11,9 +11,11 @@ class Index extends Component
     public $cari;
     public $kelas_id;
 
+    protected $listeners = ['reload' => '$refresh'];
+
     public function mount()
     {
-        $this->kelas_id = auth()->user()->kelas_id ?? Kelas::first()->id;
+        // $this->kelas_id = auth()->user()->kelas_id ?? Kelas::first()->id;
     }
 
     public function render()

@@ -30,7 +30,7 @@
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         @foreach ($datas as $data)
-            @livewire('user.item', ['user' => $data], key($data->id))
+            @livewire('user.item', ['user' => $data, 'withActions' => false], key($data->id))
         @endforeach
     </div>
 

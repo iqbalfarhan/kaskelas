@@ -4,13 +4,6 @@
             'title' => 'Riwayat transaksi',
             'desc' => 'Riwayat pemasukan dan pengeluaran'
         ])
-
-        <div>
-            <button class="btn btn-success">
-                <x-tabler-edit class="w-5 h-5" />
-                <span>Edit</span>
-            </button>
-        </div>
     </div>
 
     <div>

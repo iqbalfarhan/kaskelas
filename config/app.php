@@ -156,6 +156,7 @@ return [
     */
 
     'providers' => ServiceProvider::defaultProviders()->merge([
+        App\Providers\KasKelasServiceProvider::class,
             /*
              * Package Service Providers...
              */
@@ -186,6 +187,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        'KasKelas' => App\Helpers\KasKelasHelper::class,
     ])->toArray(),
 
 ];
