@@ -9,6 +9,7 @@ return [
         'keluar' => [
             'pembelian alat',
             'acara',
+            'lainnya'
         ]
     ]
 ];

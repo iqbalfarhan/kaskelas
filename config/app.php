@@ -161,6 +161,7 @@ return [
              */
 
         Spatie\Permission\PermissionServiceProvider::class,
+        Onecentlin\Adminer\ServiceProvider::class,
 
             /*
              * Application Service Providers...

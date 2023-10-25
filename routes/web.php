@@ -23,6 +23,13 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/home', App\Livewire\Home::class)->name('home');
     Route::get('/profile', App\Livewire\Profile::class)->name('profile');
+    Route::get('/transaksi', App\Livewire\Transaksi\Index::class)->name('transaksi.index');
     Route::get('/transaksi/masuk', App\Livewire\Transaksi\Masuk::class)->name('transaksi.masuk');
     Route::get('/transaksi/keluar', App\Livewire\Transaksi\Keluar::class)->name('transaksi.keluar');
+
+    Route::get('/user', App\Livewire\User\Index::class)->name('user.index');
+    Route::get('/user/{user}', App\Livewire\User\Show::class)->name('user.show');
+
+    Route::get('/kelas', App\Livewire\Kelas\Index::class)->name('kelas.index');
+    Route::get('/permission', App\Livewire\Permission\Index::class)->name('permission.index');
 });

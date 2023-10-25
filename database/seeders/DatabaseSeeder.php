@@ -15,16 +15,21 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            RoleSeeder::class,
             KelasSeeder::class,
+            RoleSeeder::class,
+            PermissionSeeder::class,
         ]);
 
         $user = User::create([
             'name' => 'Superadmin',
             'username' => 'admin',
+            'nis' => "196509",
             'password' => Hash::make('adminoke'),
         ]);
-
         $user->assignRole('superadmin');
+
+        $this->call([
+            UserSeeder::class,
+        ]);
     }
 }

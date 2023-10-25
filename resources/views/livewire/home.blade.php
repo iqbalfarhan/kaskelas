@@ -1,44 +1,37 @@
 <div class="space-y-6">
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="stats shadow w-full">
-            <a href="" class="stat">
-                <div class="stat-title">Masih antri</div>
-                <div class="stat-value">12</div>
-                <div class="stat-desc">Dalam antrian</div>
-            </a>
+    <div class="flex justify-between items-center">
+        @livewire('partial.header', [
+            'title' => "Kas kelas ".$kelas->name
+        ])
+
+        <div>
+            <select wire:model.live="kelas_id" class="select select-bordered @error('kelas_id') select-error @enderror">
+                <option value="">---</option>
+                @foreach ($kelases as $kelasid => $kelasname)
+                    <option value="{{ $kelasid }}">{{ $kelasname }}</option>
+                @endforeach
+            </select>
         </div>
+    </div>
+    <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
         <div class="stats shadow w-full">
-            <a href="" class="stat">
-                <div class="stat-title">On Progress</div>
-                <div class="stat-value">12</div>
-                <div class="stat-desc">Sedang diproses</div>
-            </a>
-        </div>
-        <div class="stats shadow w-full">
-            <a href="" class="stat">
-                <div class="stat-title">Selesai diantar</div>
-                <div class="stat-value">12</div>
-                <div class="stat-desc">Selesai diantar</div>
-            </a>
+            <div class="stat">
+                <div class="stat-title">Saldo kelas</div>
+                <div class="stat-value">
+                    <div class="flex gap-2">
+                        <small>Rp.</small>
+                        <span>{{ $kelas->saldo }}</span>
+                    </div>
+                </div>
+                <div class="stat-desc">Dalam kas kelas</div>
+            </div>
         </div>
         <div class="stats shadow w-full">
             <div class="stat">
-                <div class="stat-title">Total pesanan</div>
-                <div class="stat-value">12</div>
-                <div class="stat-desc">Semua pesanan</div>
+                <div class="stat-title">Jumlah siswa</div>
+                <div class="stat-value">{{ $kelas->users->count() }}</div>
+                <div class="stat-desc">Dalam antrian</div>
             </div>
-        </div>
-    </div>
-
-    <div class="space-y-3">
-        <h2 class="text-lg">
-            Lainnya
-        </h2>
-        <div>
-            <a href="" class="btn btn-primary">
-                <x-icon name="circle-plus" />
-                <span>tambah antrean</span>
-            </a>
         </div>
     </div>
 </div>

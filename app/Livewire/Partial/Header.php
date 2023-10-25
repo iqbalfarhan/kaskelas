@@ -7,8 +7,8 @@ use Livewire\Component;
 class Header extends Component
 {
 
-    public $title = "Aplikasi order air";
-    public $desc = "telkom regional 6";
+    public $title;
+    public $desc;
 
     public function render()
     {

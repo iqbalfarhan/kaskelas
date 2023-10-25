@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('username')->unique();
             $table->string('password');
             $table->foreignId('kelas_id')->nullable();
-            $table->string('nik')->nullable();
+            $table->string('nis')->nullable();
             $table->timestamps();
         });
     }

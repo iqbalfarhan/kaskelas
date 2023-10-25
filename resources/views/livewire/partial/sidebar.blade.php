@@ -4,38 +4,87 @@
         <ul>
             <li>
                 <a href="{{ route('home') }}" class="{{ $this->isActive('home') }}" wire:navigate>
+                    <x-tabler-dashboard class="h-4 w-4" />
                     <span>Dashboard</span>
                 </a>
             </li>
+           @can('kelas.index')
+                <li>
+                    <a href="{{ route('kelas.index') }}" class="{{ $this->isActive('kelas.index') }}" wire:navigate>
+                        <x-tabler-door class="h-4 w-4" />
+                        <span>Data kelas</span>
+                    </a>
+                </li>
+            @endcan
+            @can('user.index')
+                <li>
+                    <a href="{{ route('user.index') }}" class="{{ $this->isActive(['user.index', 'user.show']) }}" wire:navigate>
+                        <x-tabler-users class="h-4 w-4" />
+                        <span>Data siswa</span>
+                    </a>
+                </li>
+            @endcan
         </ul>
     </li>
 
     <li>
         <h2 class="menu-title">Transaksi</h2>
         <ul>
-            <li>
+            @can('transaksi.index')
+                <li>
+                <a href="{{ route('transaksi.index') }}" class="{{ $this->isActive('transaksi.index') }}" wire:navigate>
+                    <x-tabler-list class="h-4 w-4" />
+                    <span>Riwayat</span>
+                </a>
+            </li>
+            @endcan
+            @can('transaksi.masuk')
+                <li>
                 <a href="{{ route('transaksi.masuk') }}" class="{{ $this->isActive('transaksi.masuk') }}" wire:navigate>
+                    <x-tabler-circle-plus class="h-4 w-4" />
                     <span>Pemasukan</span>
                 </a>
             </li>
+            @endcan
+            @can('transaksi.keluar')
             <li>
                 <a href="{{ route('transaksi.keluar') }}" class="{{ $this->isActive('transaksi.keluar') }}" wire:navigate>
+                    <x-tabler-circle-minus class="h-4 w-4" />
                     <span>Pengeluaran</span>
                 </a>
             </li>
+            @endcan
         </ul>
     </li>
     
    <li>
         <h2 class="menu-title">Lainnya</h2>
         <ul>
+            @can('database.index')
+                <li>
+                    <a href="/adminer" target="_blank">
+                        <x-tabler-database class="h-4 w-4" />
+                        <span>DB Management</span>
+                    </a>
+                </li>
+            @endcan
+            @can('permission.index')
+                <li>
+                    <a href="{{ route('permission.index') }}" class="{{ $this->isActive('permission.index') }}" wire:navigate>
+                        <x-tabler-key class="h-4 w-4" />
+                        <span>App Permission</span>
+                    </a>
+                </li>
+            @endcan
             <li>
-                <a href="{{ route('profile') }}">
-                    <span>Edit prorfile</span>
+                <a href="{{ route('profile') }}" class="{{ $this->isActive('profile') }}" wire:navigate>
+                    <x-tabler-id class="h-4 w-4" />
+                    <span>Edit profile</span>
                 </a>
             </li>
             <li>
                 <button wire:click="logout">
+                    <x-tabler-logout class="h-4 w-4" />
                     <span>Logout</span>
                 </button>
             </li>

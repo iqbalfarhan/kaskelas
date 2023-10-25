@@ -11,13 +11,11 @@ use Livewire\Component;
 
 class Sidebar extends Component
 {
-    public $queue = 0;
-    public $progress = 0;
-    public $done = 0;
-
-
     public function isActive($routename)
     {
+        if (is_array($routename)) {
+            return in_array(Request::route()->getName(), $routename) ? 'active' : '';
+        }
         return Request::route()->getName() == $routename ? 'active' : '';
     }
 

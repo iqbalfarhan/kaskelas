@@ -12,8 +12,10 @@ return new class extends Migration {
     {
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('kelas_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->nullable();
             $table->enum('tipe', ['masuk', 'keluar'])->default('masuk');
+            $table->string('kategori')->nullable();
             $table->string('nominal')->nullable();
             $table->text('keterangan')->nullable();
             $table->timestamps();

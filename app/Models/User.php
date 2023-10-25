@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -20,7 +21,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
+        'username',
+        'nis',
         'kelas_id',
         'password',
     ];
@@ -44,4 +46,31 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function getImageAttribute()
+    {
+        return $this->photo ? Storage::url($this->photo) : 'https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg';
+    }
+
+    public function getInitialAttribute()
+    {
+        $words = explode(' ', $this->name);
+
+        $initials = '';
+
+        foreach ($words as $word) {
+            $initials .= strtoupper($word[0]);
+        }
+        return substr($initials, 0, 2);
+    }
+
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class);
+    }
+
+    public function transaksis()
+    {
+        return $this->hasMany(Transaksi::class);
+    }
 }
