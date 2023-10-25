@@ -21,12 +21,20 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $user = User::create([
-            'name' => 'Superadmin',
-            'username' => 'admin',
-            'nis' => "196509",
-            'password' => Hash::make('adminoke'),
+            'name' => 'Iqbal Farhan Syuhada',
+            'username' => 'iqbal',
+            'nis' => "132010040002",
+            'password' => Hash::make('offz1331'),
         ]);
         $user->assignRole('superadmin');
+
+        $admin = User::create([
+            'name' => 'Administrator',
+            'username' => 'admin',
+            'nis' => "123456",
+            'password' => Hash::make('youfi123'),
+        ]);
+        $admin->assignRole('admin');
 
         $this->call([
             UserSeeder::class,
