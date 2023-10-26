@@ -33,4 +33,18 @@ class Kelas extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function belumBayar($bulan = null)
+    {
+        $bulan = $bulan ?: date('Y-m');
+        $user_ids = $this->transaksi->where('bulan', $bulan)->pluck('user_id');
+        return $this->users->whereNotIn('id', $user_ids)->pluck('name');
+    }
+
+    public function sudahBayar($bulan = null)
+    {
+        $bulan = $bulan ?: date('Y-m');
+        $user_ids = $this->transaksi->where('bulan', $bulan)->pluck('user_id');
+        return $this->users->whereIn('id', $user_ids)->pluck('name');
+    }
 }
