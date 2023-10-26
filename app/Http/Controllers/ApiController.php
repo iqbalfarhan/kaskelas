@@ -46,8 +46,11 @@ class ApiController extends Controller
                         $users = implode("\n", $kelas->belumBayar());
                         $this->sendMessage($users);
                     } elseif ($text == "/sudah") {
-                        $users = implode("\n", $kelas->sudahBayar());
-                        $this->sendMessage($users);
+                        $users = count($kelas->sudahBayar()) == 0 ? ["tidak ada"] : $kelas->sudahBayar();
+                        $message = implode("\n", $users);
+                        $this->sendMessage($message);
+                    } else {
+                        $this->sendMessage("Command tidak ditemukan");
                     }
                 }
             }
