@@ -9,6 +9,8 @@ class ApiController extends Controller
 {
 
     use TelegramTrait;
+    public $chat_id;
+
     public function teletester()
     {
         $this->sendMessage("hallo gais");
@@ -19,9 +21,12 @@ class ApiController extends Controller
         $req = json_decode(file_get_contents("php://input"), TRUE);
 
         if (isset($req['message'])) {
-            // $this->chat_id = $req['message']['chat']['id'];
+            $this->chat_id = $req['message']['chat']['id'];
+            $this->setChatId($this->chat_id);
             // $this->message_id = $req['message']['message_id'];
             // return $this->isMessage($req['message']);
+
+            $this->sendMessage(json_encode($req, JSON_PRETTY_PRINT));
         } elseif (isset($req['callback_query'])) {
             // $this->chat_id = $req['callback_query']['message']['chat']['id'];
             // $this->message_id = $req['callback_query']['message']['message_id'];
