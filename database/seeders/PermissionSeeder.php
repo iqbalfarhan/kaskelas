@@ -35,9 +35,18 @@ class PermissionSeeder extends Seeder
         ];
 
         foreach ($datas as $data) {
-            Permission::create([
+            $permit = Permission::create([
                 'name' => $data
             ]);
+            $permit->assignRole('admin');
+
+            if (in_array($data, ['transaksi.index', 'transaksi.masuk', 'transaksi.keluar', 'transaksi.edit'])) {
+                $permit->assignRole('bendahara');
+            }
+
+            if (in_array($data, ['transaksi.index'])) {
+                $permit->assignRole('siswa');
+            }
         }
     }
 }
