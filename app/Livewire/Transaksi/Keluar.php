@@ -40,6 +40,7 @@ class Keluar extends Component
 
     public function mount(){
         $this->bulan = date('Y-m');
+        $this->kelas_id = auth()->user()->kelas_id;
     }
 
     public function render()
