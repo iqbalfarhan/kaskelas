@@ -13,6 +13,7 @@ class Kelas extends Model
         'name',
         'angkatan',
         'walikelas',
+        'telegram_group_id',
     ];
 
     public function getSaldoAttribute()

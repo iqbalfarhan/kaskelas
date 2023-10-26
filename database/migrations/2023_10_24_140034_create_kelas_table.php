@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->string('name');
             $table->string('angkatan')->nullable();
             $table->string('walikelas')->nullable();
+            $table->string('telegram_group_id')->nullable();
             $table->timestamps();
         });
     }

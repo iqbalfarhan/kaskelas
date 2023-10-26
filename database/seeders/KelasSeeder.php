@@ -17,12 +17,14 @@ class KelasSeeder extends Seeder
             [
                 'name' => 'XI-1',
                 'angkatan' => '2023/2024',
-                'walikelas' => '...'
+                'walikelas' => '...',
+                'telegram_group_id' => '-4048544344'
             ],
             [
                 'name' => 'XI-2',
                 'angkatan' => '2023/2024',
-                'walikelas' => '...'
+                'walikelas' => '...',
+                'telegram_group_id' => null
             ]
         ];
 
