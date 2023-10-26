@@ -7,7 +7,7 @@
     </div>
 
     <form class="mx-auto w-full max-w-lg space-y-6" wire:submit.prevent="simpan">
-        <div class="card bg-base-100">
+        <div class="card bg-base-100 shadow">
             <div class="card-body">
                 <div class="space-y-4">
                     <div class="form-control">
@@ -36,6 +36,12 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="text-sm">
+            <p>
+                Undang Youth Financial BOT (@youth_financial_bot) ke group telegram kelas.
+                dan input ID Group pada field ID Group Telegram
+            </p>
         </div>
         <div>
             <button class="btn btn-primary">
