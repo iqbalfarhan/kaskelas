@@ -26,7 +26,7 @@ class ReminderKasCommand extends Command
         $kelas = Kelas::find($this->argument('kelas_id'));
 
         if ($kelas->telegram_group_id) {
-            $users = $kelas->belumBayar()->toArray();
+            $users = $kelas->belumBayar()->toArray() ?? ["tidak ada"];
 
             $message = implode("\n", [
                 "***Saldo kas kelas " . $kelas->name . ":***",
