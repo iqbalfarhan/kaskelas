@@ -37,7 +37,14 @@ class ApiController extends Controller
             if ($is_command) {
                 if ($text == "/status") {
                     $kelas = Kelas::where('telegram_group_id', $this->chat_id)->first();
-                    Artisan::call('bot:reminder ' . $kelas->id);
+                    if ($kelas) {
+                        Artisan::call('bot:reminder ' . $kelas->id);
+                    }
+                } elseif ($text == "/saldo") {
+                    $kelas = Kelas::where('telegram_group_id', $this->chat_id)->first();
+                    if ($kelas) {
+                        $this->sendMessage("Rp. " . $kelas->saldo);
+                    }
                 }
             }
 
