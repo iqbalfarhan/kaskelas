@@ -23,13 +23,10 @@ class ReminderKasCommand extends Command
 
     public function handle()
     {
-        $bulan = date('Y-m');
         $kelas = Kelas::find($this->argument('kelas_id'));
 
         if ($kelas->telegram_group_id) {
-
-            $data = Transaksi::where('bulan', $bulan)->where('kelas_id', $kelas->id)->pluck('user_id');
-            $users = User::whereNotIn('id', $data)->where('kelas_id', $kelas->id)->pluck('name')->toArray();
+            $users = $kelas->belumBayar()->toArray();
 
             $message = implode("\n", [
                 "***Saldo kas kelas " . $kelas->name . ":***",

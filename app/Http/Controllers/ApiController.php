@@ -43,9 +43,11 @@ class ApiController extends Controller
                     } elseif ($text == "/saldo") {
                         $this->sendMessage("Rp. " . KasKelasHelper::money($kelas->saldo));
                     } elseif ($text == "/belum") {
-                        $this->sendMessage(implode("\n", $kelas->belumBayar()->toArray()));
+                        $users = implode("\n", $kelas->belumBayar()->toArray());
+                        $this->sendMessage($users);
                     } elseif ($text == "/sudah") {
-                        $this->sendMessage(implode("\n", $kelas->sudahBayar()->toArray()));
+                        $users = implode("\n", $kelas->sudahBayar()->toArray());
+                        $this->sendMessage($users);
                     }
                 }
             }
