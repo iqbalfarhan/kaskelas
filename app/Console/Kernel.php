@@ -14,7 +14,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         foreach (Kelas::whereNotNull('telegram_group_id')->pluck('id') as $kelas_id) {
-            $schedule->command('bot:reminder ' . $kelas_id)->everyMinute()->runInBackground();
+            $schedule->command('bot:reminder ' . $kelas_id)->everyMinute();
         }
     }
 
