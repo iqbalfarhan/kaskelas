@@ -68,6 +68,7 @@ class ApiController extends Controller
 
     public function setWebhook()
     {
-        return $this->setWebHook();
+        $this->setWebHook();
+        return ["done"];
     }
 }
