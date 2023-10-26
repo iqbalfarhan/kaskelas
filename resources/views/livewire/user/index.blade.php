@@ -1,14 +1,14 @@
 <div class="space-y-6">
-    <div class="flex justify-between items-center">
+    <div class="flex justify-between">
         @livewire('partial.header', [
-            'title' => 'Pengaturan data siswa',
+            'title' => 'Data siswa',
             'desc' => 'Menambahkan mengedit dan menghapus siswa'
         ])
 
         <div>
             <label class="btn btn-ghost" for="modalCreate">
                 <x-tabler-plus class="w-5 h-5" />
-                <span>Create</span>
+                <span class="hidden lg:block">Create</span>
             </label>
         </div>
     </div>

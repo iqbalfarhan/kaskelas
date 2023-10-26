@@ -6,8 +6,9 @@
     </div>
     <div class="navbar-center">
         <a href="{{ route('home') }}" class="btn btn-ghost normal-case text-xl">
-            <span>{{ config('app.name') }}</span>
+            <span>{{ config('app.tagline') }}</span>
         </a>
+        {{-- <img src="{{ url('YouFi.png') }}" alt="" class="w-8 self-center"> --}}
     </div>
     <div class="navbar-end">
         <a href="{{ route('profile') }}" class="btn btn-ghost" wire:navigate>

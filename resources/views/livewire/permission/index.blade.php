@@ -1,14 +1,14 @@
 <div class="space-y-6">
-    <div class="flex justify-between items-center">
+    <div class="flex justify-between items-center gap-6">
         @livewire('partial.header', [
             'title' => 'App Permission',
-            'desc' => 'Riwayat pemasukan dan pengeluaran'
+            'desc' => 'Akses fitur'
         ])
 
         <div>
             <label for="createModal" class="btn">
                 <x-tabler-plus class="w-5 h-5" />
-                <span>create permission</span>
+                <span class="hidden lg:block">create permission</span>
             </label>
         </div>
     </div>

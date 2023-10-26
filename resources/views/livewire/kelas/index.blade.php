@@ -8,7 +8,7 @@
         <div class="">
             <label for="createModal" class="btn">
                 <x-tabler-plus class="w-5 h-5" />
-                <span>create kelas</span>
+                <span class="hidden lg:block">create kelas</span>
             </label>
         </div>
     </div>

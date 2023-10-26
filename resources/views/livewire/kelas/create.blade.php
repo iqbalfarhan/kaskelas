@@ -31,7 +31,7 @@
             </div>
             <div class="modal-action justify-between">
                 <label for="createModal" class="btn">Close!</label>
-                <button class="btn bntn-primary">simpan</button>
+                <button class="btn btn-primary">simpan</button>
             </div>
         </form>
     </div>

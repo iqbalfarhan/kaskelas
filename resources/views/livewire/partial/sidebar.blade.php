@@ -1,16 +1,6 @@
 <ul class="menu p-4 w-80 min-h-full bg-base-100 text-base-content space-y-4">
     <li>
-        <div class="flex justify-center items-center">
-            <div class="avatar">
-                <div class="w-12">
-                    <img src="{{ url('YouFi.png') }}" alt="" class="">
-                </div>
-            </div>
-            <div>
-                <div class="text-lg font-semibold">{{ config('app.name') }}</div>
-                <div class="text-xs opacity-70">{{ config('app.tagline') }}</div>
-            </div>
-        </div>
+        <img src="{{ url('YouFi.png') }}" alt="" class="w-20 self-center">
     </li>
     <li>
         <h2 class="menu-title">Halaman utama</h2>
