@@ -38,13 +38,13 @@ class Kelas extends Model
     {
         $bulan = $bulan ?: date('Y-m');
         $user_ids = $this->transaksi->where('bulan', $bulan)->pluck('user_id');
-        return $this->users->whereNotIn('id', $user_ids)->pluck('name');
+        return $this->users->whereNotIn('id', $user_ids)->pluck('name') ?? ["tidak ada"];
     }
 
     public function sudahBayar($bulan = null)
     {
         $bulan = $bulan ?: date('Y-m');
         $user_ids = $this->transaksi->where('bulan', $bulan)->pluck('user_id');
-        return $this->users->whereIn('id', $user_ids)->pluck('name');
+        return $this->users->whereIn('id', $user_ids)->pluck('name') ?? ["tidak ada"];
     }
 }
