@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\KasKelasHelper;
 use App\Models\Kelas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
@@ -40,11 +41,11 @@ class ApiController extends Controller
                     if ($text == "/status") {
                         Artisan::call('bot:reminder ' . $kelas->id);
                     } elseif ($text == "/saldo") {
-                        $this->sendMessage("Rp. " . $kelas->saldo);
+                        $this->sendMessage("Rp. " . KasKelasHelper::money($kelas->saldo));
                     } elseif ($text == "/belum") {
-                        $this->sendMessage(implode("\n", $kelas->belumBayar()));
+                        $this->sendMessage(implode("\n", $kelas->belumBayar()->toArray()));
                     } elseif ($text == "/sudah") {
-                        $this->sendMessage(implode("\n", $kelas->sudahBayar()));
+                        $this->sendMessage(implode("\n", $kelas->sudahBayar()->toArray()));
                     }
                 }
             }
