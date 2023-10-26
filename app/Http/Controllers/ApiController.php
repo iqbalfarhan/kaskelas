@@ -43,12 +43,13 @@ class ApiController extends Controller
                     } elseif ($text == "/saldo") {
                         $this->sendMessage("Rp. " . KasKelasHelper::money($kelas->saldo));
                     } elseif ($text == "/belum") {
-                        $users = implode("\n", $kelas->belumBayar());
-                        $this->sendMessage($users);
+                        $users = count($kelas->belumBayar()) == 0 ? ["tidak ada"] : $kelas->belumBayar();
+                        $pesan = implode("\n", $users);
+                        $this->sendMessage($pesan);
                     } elseif ($text == "/sudah") {
                         $users = count($kelas->sudahBayar()) == 0 ? ["tidak ada"] : $kelas->sudahBayar();
-                        $message = implode("\n", $users);
-                        $this->sendMessage($message);
+                        $pesan = implode("\n", $users);
+                        $this->sendMessage($pesan);
                     } else {
                         $this->sendMessage("Command tidak ditemukan");
                     }
