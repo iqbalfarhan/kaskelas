@@ -20,4 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/tele/tester', [\App\Http\Controllers\ApiController::class, 'teletester'])->name('tele.tester');
 Route::post('/telegram', [\App\Http\Controllers\ApiController::class, 'telegram'])->name('telegram');
-Route::get('/telegram/setWebhook', [\App\Http\Controllers\ApiController::class, 'setWebhook']);
+Route::get('/telegram/setWebhook', [\App\Http\Controllers\ApiController::class, 'updatewebhook']);
