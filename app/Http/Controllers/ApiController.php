@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Iqbalfarhan08\Telegramtools\Traits\TelegramTrait;
 
 class ApiController extends Controller
@@ -25,6 +27,7 @@ class ApiController extends Controller
             $this->setChatId($this->chat_id);
 
             $message = $req['message'];
+            $text = $req['message']['text'];
             $is_command = false;
 
             if (isset($message['entities'][0]['type']) && $message['entities'][0]['type'] == 'bot_command') {
@@ -32,7 +35,10 @@ class ApiController extends Controller
             }
 
             if ($is_command) {
-                return $this->sendMessage(json_encode($req, JSON_PRETTY_PRINT));
+                if ($text == "/status") {
+                    $kelas = Kelas::where('telegram_group_id', $this->chat_id)->first();
+                    Artisan::call('bot:reminder ' . $kelas->id);
+                }
             }
 
         } elseif (isset($req['callback_query'])) {
