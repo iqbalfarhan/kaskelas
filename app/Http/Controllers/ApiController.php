@@ -22,13 +22,17 @@ class ApiController extends Controller
 
         if (isset($req['message'])) {
             $this->chat_id = $req['message']['chat']['id'];
-            $is_command = $req['message']['entities'][0]['type'] == "bot_command" ? true : false;
             $this->setChatId($this->chat_id);
-            // $this->message_id = $req['message']['message_id'];
-            // return $this->isMessage($req['message']);
+
+            $message = $req['message'];
+            $is_command = false;
+
+            if (isset($message['entities'][0]['type']) && $message['entities'][0]['type'] == 'bot_command') {
+                $is_command = true;
+            }
 
             if ($is_command) {
-                $this->sendMessage(json_encode($req, JSON_PRETTY_PRINT));
+                return $this->sendMessage(json_encode($req, JSON_PRETTY_PRINT));
             }
 
         } elseif (isset($req['callback_query'])) {
@@ -36,8 +40,6 @@ class ApiController extends Controller
             // $this->message_id = $req['callback_query']['message']['message_id'];
             // return $this->isQuery($req['callback_query']);
         } elseif (isset($req['my_chat_member'])) {
-            // $this->sendMessage(json_encode($req['my_chat_member'], JSON_PRETTY_PRINT));
-
             $chat_id = $req['my_chat_member']['chat']['id'];
 
             if ($req['my_chat_member']['new_chat_member']['status'] != "left") {
