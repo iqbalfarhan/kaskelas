@@ -26,13 +26,14 @@ class ReminderKasCommand extends Command
         $kelas = Kelas::find($this->argument('kelas_id'));
 
         if ($kelas->telegram_group_id) {
-            $users = $kelas->belumBayar()->toArray() ?? ["tidak ada"];
+            $users = count($kelas->belumBayar()) == 0 ? ["tidak ada"] : $kelas->belumBayar();
+            $pesan = implode("\n", $users);
 
             $message = implode("\n", [
                 "***Saldo kas kelas " . $kelas->name . ":***",
                 "Rp " . KasKelasHelper::money($kelas->saldo),
                 "\n***Belum bayar kas bulan ini:***",
-                implode("\n", $users)
+                $pesan
             ]);
 
             $this->setChatId($kelas->telegram_group_id);
