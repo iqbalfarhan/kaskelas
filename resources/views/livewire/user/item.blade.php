@@ -21,15 +21,21 @@
 
         @if ($withActions)
             <div class="flex gap-1 items-center">
-                <label for="editModal" class="btn btn-sm btn-success btn-square">
-                    <x-tabler-edit class="w-4 h-4" />
-                </label>
-                <button class="btn btn-sm btn-error btn-square">
-                    <x-tabler-trash class="w-4 h-4" />
-                </button>
-                <button class="btn btn-sm btn-neutral btn-square">
-                    <x-tabler-key class="w-4 h-4" />
-                </button>
+                @can('user.changerole')
+                    <label for="editModal" class="btn btn-sm btn-success btn-square">
+                        <x-tabler-edit class="w-4 h-4" />
+                    </label>
+                @endcan
+                @can('user.delete')
+                    <button class="btn btn-sm btn-error btn-square" wire:click="deleteUser" wire:confirm="Apa anda yakin akan menghapus">
+                        <x-tabler-trash class="w-4 h-4" />
+                    </button>
+                @endcan
+                @can('user.resetpassword')
+                    <button class="btn btn-sm btn-neutral btn-square" wire:click="resetPasswordUser" wire:confirm="Apa anda yakin akan menreset password">
+                        <x-tabler-key class="w-4 h-4" />
+                    </button>
+                @endcan
 
                 @livewire('user.edit', ['user' => $user])
             </div>

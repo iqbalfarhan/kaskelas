@@ -50,7 +50,12 @@ class UserSeeder extends Seeder
             $data['username'] = $nis;
             $data['password'] = Hash::make($nis);
             $user = User::create($data);
-            $user->assignRole('siswa');
+
+            if (in_array($data['nis'], ['1101', '1201'])) {
+                $user->assignRole('bendahara');
+            } else {
+                $user->assignRole('siswa');
+            }
         }
     }
 }

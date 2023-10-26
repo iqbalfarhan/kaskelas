@@ -3,10 +3,13 @@
 namespace App\Livewire\User;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
 class Item extends Component
 {
+    use LivewireAlert;
 
     public User $user;
 
@@ -14,14 +17,23 @@ class Item extends Component
 
     protected $listeners = ['reload' => '$refresh'];
 
-    public function deleteUser(User $user)
+    public function deleteUser()
     {
-        $user->delete();
+        if ($this->user->delete()) {
+            $this->flash('success', 'User dihapus');
+            return redirect()->route('user.index');
+        } else {
+            $this->alert('error', 'User gagal dihapus');
+        }
     }
 
-    public function resetPasswordUser(User $user)
+    public function resetPasswordUser()
     {
-        $user->delete();
+        if ($this->user->password = Hash::make($this->user->nis)) {
+            $this->alert('success', 'Password berhasil di reset ke NIS siswa');
+        } else {
+            $this->alert('error', 'Password user gagal direset');
+        }
     }
 
     public function render()

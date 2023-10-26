@@ -6,10 +6,10 @@
         ])
 
         <div class="">
-            <button class="btn">
+            <label for="createModal" class="btn">
                 <x-tabler-plus class="w-5 h-5" />
                 <span>create kelas</span>
-            </button>
+            </label>
         </div>
     </div>
 
@@ -18,4 +18,6 @@
             @livewire('kelas.item', ['kelas' => $data], key($data->id))
         @endforeach
     </div>
+
+    @livewire('kelas.create')
 </div>
