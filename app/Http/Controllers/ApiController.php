@@ -18,10 +18,6 @@ class ApiController extends Controller
     {
         $req = json_decode(file_get_contents("php://input"), TRUE);
 
-        // $chat_id = $req['message']['chat']['id'];
-        // $this->setChatId($chat_id);
-        // return $this->sendMessage("silakan ini dia Telegram ID kamu <b>{$chat_id}</b>");
-
         if (isset($req['message'])) {
             // $this->chat_id = $req['message']['chat']['id'];
             // $this->message_id = $req['message']['message_id'];
@@ -35,11 +31,9 @@ class ApiController extends Controller
 
             $chat_id = $req['my_chat_member']['chat']['id'];
 
-            if ($req['my_chat_member']['new_chat_member']['status'] == "left") {
-                // Telegroup::where('chat_id', $req['my_chat_member']['chat']['id'])->delete();
-            } else {
+            if ($req['my_chat_member']['new_chat_member']['status'] != "left") {
                 $this->setChatId($chat_id);
-                $this->sendMessage('Telegram ID Group ' . $chat_id);
+                return $this->sendMessage('Telegram ID Group ' . $chat_id);
             }
         }
     }
