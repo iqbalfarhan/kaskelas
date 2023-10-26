@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-3 gap-6">
+    <div class="grid lg:grid-cols-3 gap-6">
         @foreach ($datas as $data)
             @livewire('kelas.item', ['kelas' => $data], key($data->id))
         @endforeach
