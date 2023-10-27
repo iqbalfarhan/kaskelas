@@ -28,6 +28,7 @@
                 <th>Nominal</th>
                 <th>kategori</th>
                 <th>keterangan</th>
+                <th></th>
             </thead>
             <tbody>
                 @foreach ($datas as $data)
@@ -53,6 +54,21 @@
                                     </button>
                                 @endif
                                 <span>{{ Str::limit($data->keterangan, 40) }}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="flex flex-row space-x-1">
+                                @can('transaksi.edit')
+                                    <a href="{{ route('transaksi.edit', $data->id) }}" class="btn btn-xs btn-success btn-square">
+                                        <x-tabler-edit class="w-4 h-4" />
+                                    </a>
+                                @endcan
+                                @can('transaksi.delete')
+                                    <button class="btn btn-xs btn-error btn-square" wire:click="deleteTransaksi({{ $data->id }})" wire:confirm="Anda yakin akan menghapus riwayat ini">
+                                        <x-tabler-trash class="w-4 h-4" />
+                                    </button>
+                                @endcan
+
                             </div>
                         </td>
                     </tr>

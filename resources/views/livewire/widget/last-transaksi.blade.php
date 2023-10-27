@@ -3,21 +3,22 @@
         <table class="table whitespace-nowrap">
             <thead class="border-b-4 border-base-200">
                 <th>Tanggal</th>
-                <th>Jam</th>
-                <th>kelas</th>
-                <th>siswa</th>
+                <th>siswa / kelas</th>
                 <th>Nominal</th>
                 <th>keterangan</th>
             </thead>
             <tbody>
                 @foreach ($datas as $data)
                     <tr>
-                        <td>{{ $data->created_at->format('d F Y') }}</td>
-                        <td>{{ $data->created_at->format('H:i') }}</td>
-                        <td>{{ $data->kelas->name }}</td>
-                        <td>{{ $data->user->name ?? "" }}</td>
+                        <td>{{ $data->created_at->format('d/M/Y H:i') }}</td>
                         <td>
-                            <div class="flex justify-between">
+                            <div class="flex space-x-1">
+                                <span>{{ $data->user->name ?? "" }}</span>
+                                <span class="opacity-75">{{ $data->kelas->name ?? "" }}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="flex justify-between text-{{ $data->tipe == "masuk" ? "success" : "error" }}">
                                 <span>Rp.</span>
                                 <span>{{ $data->tipe == "masuk" ? '+' : '-' }}{{ KasKelas::money($data->nominal) }}</span>
                             </div>

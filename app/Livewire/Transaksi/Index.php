@@ -4,10 +4,12 @@ namespace App\Livewire\Transaksi;
 
 use App\Models\Kelas;
 use App\Models\Transaksi;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
 class Index extends Component
 {
+    use LivewireAlert;
     public $user_id;
     public $kelas_id;
     public $bulan;
@@ -20,11 +22,15 @@ class Index extends Component
             $this->user_id = auth()->id();
         }
 
-        if ($user->kelas_id) {
-            $this->kelas_id = $user->kelas_id;
-        }
+        $this->kelas_id = $user->kelas_id ?? Kelas::first()->id;
 
         $this->bulan = date('Y-m');
+    }
+
+    public function deleteTransaksi(Transaksi $transaksi)
+    {
+        $transaksi->delete();
+        $this->alert('success', 'Transaksi berhasil dihapus');
     }
 
     public function render()

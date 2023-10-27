@@ -35,7 +35,7 @@
         <ul>
             @can('transaksi.index')
                 <li>
-                <a href="{{ route('transaksi.index') }}" class="{{ $this->isActive('transaksi.index') }}" wire:navigate>
+                <a href="{{ route('transaksi.index') }}" class="{{ $this->isActive(['transaksi.index', 'transaksi.edit']) }}" wire:navigate>
                     <x-tabler-list class="h-4 w-4" />
                     <span>Riwayat kas</span>
                 </a>

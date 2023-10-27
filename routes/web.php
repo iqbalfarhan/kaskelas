@@ -26,6 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware('permission:transaksi.index')->get('/transaksi', App\Livewire\Transaksi\Index::class)->name('transaksi.index');
     Route::middleware('permission:transaksi.masuk')->get('/transaksi/masuk', App\Livewire\Transaksi\Masuk::class)->name('transaksi.masuk');
     Route::middleware('permission:transaksi.keluar')->get('/transaksi/keluar', App\Livewire\Transaksi\Keluar::class)->name('transaksi.keluar');
+    Route::middleware('permission:transaksi.edit')->get('/transaksi/{transaksi}/edit', App\Livewire\Transaksi\Edit::class)->name('transaksi.edit');
     Route::middleware('permission:user.index')->get('/user', App\Livewire\User\Index::class)->name('user.index');
     Route::middleware('permission:user.show')->get('/user/{user}', App\Livewire\User\Show::class)->name('user.show');
     Route::middleware('permission:kelas.index')->get('/kelas', App\Livewire\Kelas\Index::class)->name('kelas.index');
