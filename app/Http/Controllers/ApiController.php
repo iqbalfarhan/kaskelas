@@ -86,7 +86,7 @@ class ApiController extends Controller
                         $mapdata = implode("\n", $mappedData->toArray());
 
                         $pesan = implode("\n", [
-                            "**Pengeluaran kas kelas **" . $kelas->name . "**bulan ini**",
+                            "***Pengeluaran kas kelas " . $kelas->name . " bulan ini***",
                             "",
                             $mapdata
                         ]);
