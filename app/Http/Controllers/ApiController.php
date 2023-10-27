@@ -71,6 +71,7 @@ class ApiController extends Controller
                             "",
                             implode("\n", $users)
                         ]);
+                        $this->setParseMode('markdown');
                         $this->sendMessage($pesan);
                     } elseif ($text == "/sudah") {
                         $users = count($kelas->sudahBayar()) == 0 ? ["tidak ada"] : $kelas->sudahBayar();
@@ -79,6 +80,7 @@ class ApiController extends Controller
                             "",
                             implode("\n", $users)
                         ]);
+                        $this->setParseMode('markdown');
                         $this->sendMessage($pesan);
                     } elseif ($text == "/pengeluaran") {
                         // $transaksi = $kelas->transaksi->where('bulan', date('Y-m'))->where('tipe', 'keluar')->pluck('keterangan')->toArray();
