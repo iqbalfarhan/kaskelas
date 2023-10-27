@@ -5,18 +5,23 @@ namespace App\Livewire\Transaksi;
 use App\Models\Kelas;
 use App\Models\Transaksi;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Keluar extends Component
 {
-    use LivewireAlert;
+    use LivewireAlert, WithFileUploads;
+
     public $kelas_id;
     public $tipe = 'keluar';
     public $kategori;
     public $bulan;
     public $nominal;
     public $keterangan;
+    public $photo;
 
 
     public function simpan()
@@ -28,9 +33,19 @@ class Keluar extends Component
             'nominal' => 'required',
             'bulan' => 'required',
             'keterangan' => 'required',
+            'photo' => 'required|image',
         ]);
 
-        if (Transaksi::create($valid)) {
+        if ($new = Transaksi::create($valid)) {
+            if ($this->photo) {
+                $gambar = $this->photo->hashName('pengeluaran_' . $this->kelas_id);
+                $makeimage = Image::make($this->photo)->fit(512)->encode('jpg', 80);
+                if (Storage::put($gambar, $makeimage)) {
+                    $new->update([
+                        'photo' => $gambar
+                    ]);
+                }
+            }
             $this->flash('success', 'Pemasukan berhasil disimpan');
             return redirect()->route('transaksi.index');
         } else {
@@ -38,9 +53,10 @@ class Keluar extends Component
         }
     }
 
-    public function mount(){
+    public function mount()
+    {
         $this->bulan = date('Y-m');
-        $this->kelas_id = auth()->user()->kelas_id;
+        $this->kelas_id = auth()->user()->kelas_id ?? Kelas::first()->id;
     }
 
     public function render()

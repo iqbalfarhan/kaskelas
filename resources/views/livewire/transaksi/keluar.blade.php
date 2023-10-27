@@ -50,6 +50,20 @@
                         <input type="number" step="1" wire:model.live="nominal" class="input join-item w-full input-bordered @error('nominal') input-error @enderror" placeholder="0" />
                     </div>
                 </div>
+                <div class="form-control w-full">
+                    <label for="" class="label">
+                        <span class="label-text">Eviden</span>
+                    </label>
+                    <input type="file" wire:model.live="photo" accept="image/*" class="file-input w-full file-input-bordered @error('photo') file-input-error @enderror" placeholder="0" />
+
+                    @if ($photo)
+                        <div class="avatar">
+                            <div class="w-full rounded-lg">
+                                <img src="{{ $photo->temporaryUrl() }}" />
+                            </div>
+                        </div>
+                    @endif
+                </div>
                 <div class="form-control w-full lg:col-span-3">
                     <label for="" class="label">
                         <span class="label-text">Keterangan</span>

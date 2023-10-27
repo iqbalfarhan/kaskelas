@@ -51,11 +51,14 @@ class ApiController extends Controller
                         $pesan = implode("\n", $users);
                         $this->sendMessage($pesan);
                     } elseif ($text == "/pengeluaran") {
-                        $pesan = "masih dalam pengembangan";
+                        $transaksi = $kelas->transaksi->where('bulan', date('Y-m'))->where('tipe', 'keluar')->pluck('keterangan')->toArray();
+                        $pesan = $transaksi ? implode(', ', $transaksi) : ["lorem"];
                         $this->sendMessage($pesan);
                     } else {
                         $this->sendMessage("Command tidak ditemukan");
                     }
+                } else {
+                    $this->sendMessage("Command bot hanya dapat dilakukan di group kelas");
                 }
             }
 

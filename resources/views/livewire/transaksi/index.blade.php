@@ -43,10 +43,23 @@
                             </div>
                         </td>
                         <td>{{ $data->kategori }}</td>
-                        <td>{{ Str::limit($data->keterangan, 40) }}</td>
+                        <td>
+                            <div class="flex gap-2">
+                                @if ($data->photo)
+                                    <button class="avatar" wire:click="$dispatch('showTransaksi', [{{ $data->id }}])">
+                                        <div class="w-6 rounded-lg">
+                                            <img src="{{ $data->image_url }}" />
+                                        </div>
+                                    </button>
+                                @endif
+                                <span>{{ Str::limit($data->keterangan, 40) }}</span>
+                            </div>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
+
+    @livewire('transaksi.show')
 </div>
