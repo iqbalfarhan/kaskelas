@@ -88,6 +88,7 @@ class ApiController extends Controller
                         // $this->sendMessage($pesan);
 
                         $datas = $kelas->transaksi()->where('bulan', date('Y-m'))->where('tipe', 'keluar')->get();
+                        $sum = $kelas->transaksi()->where('bulan', date('Y-m'))->where('tipe', 'keluar')->sum('nominal');
 
                         if ($datas->count() != 0) {
                             $mappedData = $datas->map(function ($data) {
@@ -99,7 +100,9 @@ class ApiController extends Controller
                             $pesan = implode("\n", [
                                 "***Pengeluaran kas kelas " . $kelas->name . " bulan ini***",
                                 "",
-                                $mapdata
+                                $mapdata,
+                                "",
+                                "Total : Rp." . KasKelasHelper::money($sum)
                             ]);
 
                             $this->setParseMode('markdown');
