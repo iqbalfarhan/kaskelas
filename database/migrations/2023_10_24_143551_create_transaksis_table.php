@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->string('bulan')->nullable();
             $table->string('nominal')->nullable();
             $table->text('keterangan')->nullable();
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }

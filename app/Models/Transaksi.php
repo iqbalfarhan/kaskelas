@@ -6,6 +6,7 @@ use App\Casts\Bulan;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class Transaksi extends Model
 {
@@ -19,6 +20,7 @@ class Transaksi extends Model
         'bulan',
         'nominal',
         'keterangan',
+        'photo',
     ];
 
     protected $casts = [
@@ -33,5 +35,10 @@ class Transaksi extends Model
     public function kelas()
     {
         return $this->belongsTo(Kelas::class);
+    }
+
+    public function getImageUrlAttribute()
+    {
+        return $this->photo ? Storage::url($this->photo) : '/noimage.jpg';
     }
 }

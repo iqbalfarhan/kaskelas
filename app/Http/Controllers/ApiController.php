@@ -50,6 +50,9 @@ class ApiController extends Controller
                         $users = count($kelas->sudahBayar()) == 0 ? ["tidak ada"] : $kelas->sudahBayar();
                         $pesan = implode("\n", $users);
                         $this->sendMessage($pesan);
+                    } elseif ($text == "/pengeluaran") {
+                        $pesan = "masih dalam pengembangan";
+                        $this->sendMessage($pesan);
                     } else {
                         $this->sendMessage("Command tidak ditemukan");
                     }
