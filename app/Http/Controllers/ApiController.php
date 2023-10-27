@@ -79,20 +79,24 @@ class ApiController extends Controller
 
                         $datas = $kelas->transaksi()->where('bulan', date('Y-m'))->where('tipe', 'keluar')->get();
 
-                        $mappedData = $datas->map(function ($data) {
-                            return $data->keterangan . ". Total pengeluaran : Rp" . KasKelasHelper::money($data->nominal) . "\n";
-                        });
+                        if ($datas->count() != 0) {
+                            $mappedData = $datas->map(function ($data) {
+                                return $data->keterangan . ". Total pengeluaran : Rp" . KasKelasHelper::money($data->nominal) . "\n";
+                            });
 
-                        $mapdata = implode("\n", $mappedData->toArray());
+                            $mapdata = implode("\n", $mappedData->toArray());
 
-                        $pesan = implode("\n", [
-                            "***Pengeluaran kas kelas " . $kelas->name . " bulan ini***",
-                            "",
-                            $mapdata
-                        ]);
+                            $pesan = implode("\n", [
+                                "***Pengeluaran kas kelas " . $kelas->name . " bulan ini***",
+                                "",
+                                $mapdata
+                            ]);
 
-                        $this->setParseMode('markdown');
-                        $this->sendMessage($pesan);
+                            $this->setParseMode('markdown');
+                            $this->sendMessage($pesan);
+                        } else {
+                            $this->sendMessage("Belum ada pengeluaran kas untuk kelas " . $kelas->name);
+                        }
                     } else {
                         $this->sendMessage("Command tidak ditemukan");
                     }
