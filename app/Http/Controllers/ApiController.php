@@ -17,19 +17,22 @@ class ApiController extends Controller
 
     public function index()
     {
-        $datas = Transaksi::where('bulan', date('Y-m'))->where('tipe', 'keluar')->get();
+        $kelas = Kelas::first();
+        $datas = $kelas->transaksi()->where('bulan', date('Y-m'))->where('tipe', 'keluar')->get();
 
         $mappedData = $datas->map(function ($data) {
-            return $data->keterangan . " " . $data->kelas_id . " " . $data->nominal;
+            return $data->keterangan . " " . $data->kelas_id . ", Total pengeluaran : Rp. " . KasKelasHelper::money($data->nominal);
         });
 
-        $mapdata = implode("-", $mappedData->toArray());
+        $mapdata = implode("\n", $mappedData->toArray());
 
         $pesan = implode("\n", [
             "**Pengeluaran bulan ini**",
+            "",
             $mapdata
         ]);
 
+        // $this->sendMessage($pesan);
         return $pesan;
     }
 
@@ -74,7 +77,7 @@ class ApiController extends Controller
                         // $pesan = $transaksi ? implode(', ', $transaksi) : ["lorem"];
                         // $this->sendMessage($pesan);
 
-                        $datas = $kelas->transaksi->where('bulan', date('Y-m'))->where('tipe', 'keluar')->get();
+                        $datas = $kelas->transaksi()->where('bulan', date('Y-m'))->where('tipe', 'keluar')->get();
 
                         $mappedData = $datas->map(function ($data) {
                             return $data->keterangan . " " . $data->kelas_id . " " . $data->nominal;
