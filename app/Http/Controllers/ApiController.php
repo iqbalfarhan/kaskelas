@@ -92,7 +92,7 @@ class ApiController extends Controller
 
                         if ($datas->count() != 0) {
                             $mappedData = $datas->map(function ($data) {
-                                return "- " . $data->keterangan . ". Total pengeluaran : Rp." . KasKelasHelper::money($data->nominal);
+                                return "- " . $data->keterangan . ". (Rp." . KasKelasHelper::money($data->nominal) . ")";
                             });
 
                             $mapdata = implode("\n", $mappedData->toArray());
