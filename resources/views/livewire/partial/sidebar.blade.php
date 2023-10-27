@@ -63,6 +63,14 @@
    <li>
         <h2 class="menu-title">Lainnya</h2>
         <ul>
+            @can('pengaturan.telegram')
+                <li>
+                    <a href="{{ route('pengaturan.telegram') }}" class="{{ $this->isActive('pengaturan.telegram') }}" wire:navigate>
+                        <x-tabler-brand-telegram class="h-4 w-4" />
+                        <span>Bot telegram</span>
+                    </a>
+                </li>
+            @endcan
             @can('database.index')
                 <li>
                     <a href="/adminer" target="_blank">

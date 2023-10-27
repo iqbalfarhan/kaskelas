@@ -31,4 +31,5 @@ Route::middleware('auth')->group(function () {
     Route::middleware('permission:kelas.index')->get('/kelas', App\Livewire\Kelas\Index::class)->name('kelas.index');
     Route::middleware('permission:kelas.show')->get('/kelas/{kelas}', App\Livewire\Kelas\Show::class)->name('kelas.show');
     Route::middleware('permission:permission.index')->get('/permission', App\Livewire\Permission\Index::class)->name('permission.index');
+    Route::middleware('permission:pengaturan.telegram')->get('/pengaturan/telegram', App\Livewire\Pengaturan\Telegram::class)->name('pengaturan.telegram');
 });

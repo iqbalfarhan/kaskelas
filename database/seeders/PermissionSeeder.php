@@ -32,6 +32,8 @@ class PermissionSeeder extends Seeder
             'transaksi.masuk',
             'transaksi.keluar',
             'transaksi.edit',
+
+            'pengaturan.telegram',
         ];
 
         foreach ($datas as $data) {
