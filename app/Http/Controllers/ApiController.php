@@ -60,11 +60,11 @@ class ApiController extends Controller
             if ($is_command) {
                 $kelas = Kelas::where('telegram_group_id', $this->chat_id)->first();
                 if ($kelas) {
-                    if ($text == "/status") {
+                    if ($text == "/status" || $text == "/status@youth_financial_bot") {
                         Artisan::call('bot:reminder ' . $kelas->id);
-                    } elseif ($text == "/saldo") {
+                    } elseif ($text == "/saldo" || $text == "/saldo@youth_financial_bot") {
                         $this->sendMessage("Rp. " . KasKelasHelper::money($kelas->saldo));
-                    } elseif ($text == "/belum") {
+                    } elseif ($text == "/belum" || $text == "/belum@youth_financial_bot") {
                         $users = count($kelas->belumBayar()) == 0 ? ["tidak ada"] : $kelas->belumBayar();
                         $pesan = implode("\n", [
                             "***List siswa belum bayar kas bulan ini***",
@@ -73,7 +73,7 @@ class ApiController extends Controller
                         ]);
                         $this->setParseMode('markdown');
                         $this->sendMessage($pesan);
-                    } elseif ($text == "/sudah") {
+                    } elseif ($text == "/sudah" || $text == "/sudah@youth_financial_bot") {
                         $users = count($kelas->sudahBayar()) == 0 ? ["tidak ada"] : $kelas->sudahBayar();
                         $pesan = implode("\n", [
                             "***List siswa sudah bayar kas bulan ini***",
@@ -82,7 +82,7 @@ class ApiController extends Controller
                         ]);
                         $this->setParseMode('markdown');
                         $this->sendMessage($pesan);
-                    } elseif ($text == "/pengeluaran") {
+                    } elseif ($text == "/pengeluaran" || $text == "/pengeluaran@youth_financial_bot") {
                         // $transaksi = $kelas->transaksi->where('bulan', date('Y-m'))->where('tipe', 'keluar')->pluck('keterangan')->toArray();
                         // $pesan = $transaksi ? implode(', ', $transaksi) : ["lorem"];
                         // $this->sendMessage($pesan);
