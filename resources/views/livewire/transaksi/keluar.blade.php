@@ -55,6 +55,9 @@
                         <span class="label-text">Eviden</span>
                     </label>
                     <input type="file" wire:model.live="photo" accept="image/*" class="file-input w-full file-input-bordered @error('photo') file-input-error @enderror" placeholder="0" />
+                    <label for="" class="label">
+                        <span class="label-text-alt">Foto kwitansi / bon</span>
+                    </label>
 
                     @if ($photo)
                         <div class="avatar">
@@ -68,10 +71,21 @@
                     <label for="" class="label">
                         <span class="label-text">Keterangan</span>
                     </label>
-                    <textarea type="text" wire:model="keterangan" class="textarea textarea-bordered @error('keterangan') textarea-error @enderror" placeholder="keterangan input"></textarea>
+                    <textarea
+                        type="text"
+                        wire:model="keterangan"
+                        class="textarea textarea-bordered @error('keterangan') textarea-error @enderror"
+                        placeholder="keterangan pengeluaran. apabila pengeluaran pembelian alat, tuliskan juga jumlahnya"></textarea>
                 </div>
             </div>
         </form>
+    </div>
+
+    <div class="card-body">
+        <ul class="list list-disc list-outside text-sm">
+            <li class="list-item">Apabila pengeluaran pembelian alat, tuliskan juga jumlahnya pada keterangan pengeluaran</li>
+            <li class="list-item">Lampirkan juga photo kwitansi atau bon pengeluaran pada eviden</li>
+        </ul>
     </div>
 
     <div>

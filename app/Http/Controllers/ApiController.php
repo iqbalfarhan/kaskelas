@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\KasKelasHelper;
 use App\Models\Kelas;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Iqbalfarhan08\Telegramtools\Traits\TelegramTrait;
@@ -13,6 +14,24 @@ class ApiController extends Controller
 
     use TelegramTrait;
     public $chat_id;
+
+    public function index()
+    {
+        $datas = Transaksi::where('bulan', date('Y-m'))->where('tipe', 'keluar')->get();
+
+        $mappedData = $datas->map(function ($data) {
+            return $data->keterangan . " " . $data->kelas_id . " " . $data->nominal;
+        });
+
+        $mapdata = implode("-", $mappedData->toArray());
+
+        $pesan = implode("\n", [
+            "**Pengeluaran bulan ini**",
+            $mapdata
+        ]);
+
+        return $pesan;
+    }
 
     public function teletester()
     {
@@ -51,8 +70,24 @@ class ApiController extends Controller
                         $pesan = implode("\n", $users);
                         $this->sendMessage($pesan);
                     } elseif ($text == "/pengeluaran") {
-                        $transaksi = $kelas->transaksi->where('bulan', date('Y-m'))->where('tipe', 'keluar')->pluck('keterangan')->toArray();
-                        $pesan = $transaksi ? implode(', ', $transaksi) : ["lorem"];
+                        // $transaksi = $kelas->transaksi->where('bulan', date('Y-m'))->where('tipe', 'keluar')->pluck('keterangan')->toArray();
+                        // $pesan = $transaksi ? implode(', ', $transaksi) : ["lorem"];
+                        // $this->sendMessage($pesan);
+
+                        $datas = $kelas->transaksi->where('bulan', date('Y-m'))->where('tipe', 'keluar')->get();
+
+                        $mappedData = $datas->map(function ($data) {
+                            return $data->keterangan . " " . $data->kelas_id . " " . $data->nominal;
+                        });
+
+                        $mapdata = implode("\n", $mappedData->toArray());
+
+                        $pesan = implode("\n", [
+                            "**Pengeluaran bulan ini**",
+                            "",
+                            $mapdata
+                        ]);
+
                         $this->sendMessage($pesan);
                     } else {
                         $this->sendMessage("Command tidak ditemukan");
