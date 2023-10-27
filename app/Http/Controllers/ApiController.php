@@ -80,7 +80,7 @@ class ApiController extends Controller
                         $datas = $kelas->transaksi()->where('bulan', date('Y-m'))->where('tipe', 'keluar')->get();
 
                         $mappedData = $datas->map(function ($data) {
-                            return $data->keterangan . ". Total pengeluaran : " . $data->nominal . "\n";
+                            return $data->keterangan . ". Total pengeluaran : Rp" . KasKelasHelper::money($data->nominal) . "\n";
                         });
 
                         $mapdata = implode("\n", $mappedData->toArray());
