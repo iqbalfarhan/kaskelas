@@ -5,13 +5,15 @@ untuk menginsatall aplikasi ini memerlukaan
 
 ## Installasi
 jalankan fungsi berikut ini
+- buka terminal.
 - git clone https://github.com/iqbalfarhan/kaskelas.git
 - masuk ke direktori kaskelas
 - jalankan perintah `composer install` (install composer bila tidak ada composer)
 - duplicate .env.example dan rename .env
 - isi .env sesuai dengan data yang diperlukan
 - buat database sesuai dengan .env
-- jalankan perintah `php artisan migrate --seed` untuk men
+- jalankan perintah `php artisan migrate --seed` untuk migrasi database
+- untuk menjalankan aplikasi secara local jalankan `php artisan serve`
 
 ## Login aplikasi
 gunakan data login berikut ini:
