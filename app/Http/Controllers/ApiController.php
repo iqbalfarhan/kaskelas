@@ -80,17 +80,18 @@ class ApiController extends Controller
                         $datas = $kelas->transaksi()->where('bulan', date('Y-m'))->where('tipe', 'keluar')->get();
 
                         $mappedData = $datas->map(function ($data) {
-                            return $data->keterangan . " " . $data->kelas_id . " " . $data->nominal;
+                            return $data->keterangan . ". Total pengeluaran : " . $data->nominal . "\n";
                         });
 
                         $mapdata = implode("\n", $mappedData->toArray());
 
                         $pesan = implode("\n", [
-                            "**Pengeluaran bulan ini**",
+                            "**Pengeluaran kas kelas **" . $kelas->name . "**bulan ini**",
                             "",
                             $mapdata
                         ]);
 
+                        $this->setParseMode('markdown');
                         $this->sendMessage($pesan);
                     } else {
                         $this->sendMessage("Command tidak ditemukan");
