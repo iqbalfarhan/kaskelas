@@ -12,8 +12,9 @@
     </div>
     <div class="navbar-end">
         <a href="{{ route('profile') }}" class="btn btn-ghost" wire:navigate>
-            <div class="flex-col items-end hidden lg:flex">
-                <span class="font-semibold text-sm normal-case">{{ auth()->user()->name }}</span>
+            <div class="flex-col items-end hidden lg:flex normal-case">
+                <span class="font-semibold text-sm">{{ auth()->user()->name }}</span>
+                <span class="text-xs opacity-70">{{ auth()->user()->getRoleNames()->first() }}</span>
             </div>
             <div class="avatar placeholder">
                 <div class="w-8 rounded-full bg-neutral-focus text-neutral-content">

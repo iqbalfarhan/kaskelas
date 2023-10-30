@@ -34,6 +34,11 @@ class Kelas extends Model
         return $this->hasMany(User::class);
     }
 
+    public function sekolah()
+    {
+        return $this->belongsTo(Sekolah::class);
+    }
+
     public function belumBayar($bulan = null)
     {
         $bulan = $bulan ?: date('Y-m');

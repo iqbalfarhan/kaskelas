@@ -6,6 +6,28 @@
             <div class="py-4">
                 <div class="form-control">
                     <label for="" class="label">
+                        <span class="label-text">Sekolah</span>
+                    </label>
+                    <select type="text" class="select select-bordered" wire:model="role">
+                        <option value="">---</option>
+                        @foreach ($sekolahs as $sekolahid => $sekolahname)
+                            <option value="{{ $sekolahid }}">{{ $sekolahname }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="" class="label">
+                        <span class="label-text">Kelas</span>
+                    </label>
+                    <select type="text" class="select select-bordered" wire:model="role">
+                        <option value="">---</option>
+                        @foreach ($roles as $name)
+                            <option value="{{ $name }}">{{ $name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="" class="label">
                         <span class="label-text">Privilege</span>
                     </label>
                     <select type="text" class="select select-bordered" wire:model="role">

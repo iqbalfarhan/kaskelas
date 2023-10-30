@@ -23,14 +23,19 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/home', App\Livewire\Home::class)->name('home');
     Route::get('/profile', App\Livewire\Profile::class)->name('profile');
-    Route::middleware('permission:transaksi.index')->get('/transaksi', App\Livewire\Transaksi\Index::class)->name('transaksi.index');
-    Route::middleware('permission:transaksi.masuk')->get('/transaksi/masuk', App\Livewire\Transaksi\Masuk::class)->name('transaksi.masuk');
-    Route::middleware('permission:transaksi.keluar')->get('/transaksi/keluar', App\Livewire\Transaksi\Keluar::class)->name('transaksi.keluar');
-    Route::middleware('permission:transaksi.edit')->get('/transaksi/{transaksi}/edit', App\Livewire\Transaksi\Edit::class)->name('transaksi.edit');
-    Route::middleware('permission:user.index')->get('/user', App\Livewire\User\Index::class)->name('user.index');
-    Route::middleware('permission:user.show')->get('/user/{user}', App\Livewire\User\Show::class)->name('user.show');
-    Route::middleware('permission:kelas.index')->get('/kelas', App\Livewire\Kelas\Index::class)->name('kelas.index');
-    Route::middleware('permission:kelas.show')->get('/kelas/{kelas}', App\Livewire\Kelas\Show::class)->name('kelas.show');
-    Route::middleware('permission:permission.index')->get('/permission', App\Livewire\Permission\Index::class)->name('permission.index');
-    Route::middleware('permission:pengaturan.telegram')->get('/pengaturan/telegram', App\Livewire\Pengaturan\Telegram::class)->name('pengaturan.telegram');
+    Route::middleware('can:sekolah.index')->get('/sekolah', App\Livewire\Sekolah\Index::class)->name('sekolah.index');
+
+    Route::middleware('can:transaksi.index')->get('/transaksi', App\Livewire\Transaksi\Index::class)->name('transaksi.index');
+    Route::middleware('can:transaksi.masuk')->get('/transaksi/masuk', App\Livewire\Transaksi\Masuk::class)->name('transaksi.masuk');
+    Route::middleware('can:transaksi.keluar')->get('/transaksi/keluar', App\Livewire\Transaksi\Keluar::class)->name('transaksi.keluar');
+    Route::middleware('can:transaksi.edit')->get('/transaksi/{transaksi}/edit', App\Livewire\Transaksi\Edit::class)->name('transaksi.edit');
+
+    Route::middleware('can:user.index')->get('/user', App\Livewire\User\Index::class)->name('user.index');
+    Route::middleware('can:user.show')->get('/user/{user}', App\Livewire\User\Show::class)->name('user.show');
+
+    Route::middleware('can:kelas.index')->get('/kelas', App\Livewire\Kelas\Index::class)->name('kelas.index');
+    Route::middleware('can:kelas.show')->get('/kelas/{kelas}', App\Livewire\Kelas\Show::class)->name('kelas.show');
+
+    Route::middleware('can:permission.index')->get('/permission', App\Livewire\Permission\Index::class)->name('permission.index');
+    Route::middleware('can:pengaturan.telegram')->get('/pengaturan/telegram', App\Livewire\Pengaturan\Telegram::class)->name('pengaturan.telegram');
 });

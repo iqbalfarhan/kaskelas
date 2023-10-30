@@ -6,6 +6,9 @@
             </div>
         </div>
         <h3 class="card-title">Kelas {{ $kelas->name }}</h3>
-        <span>{{ $kelas->users()->count() }} siswa</span>
+        <div class="flex flex-col items-center text-sm">
+            <span>{{ $kelas->sekolah->name ?? "" }}</span>
+            <span>{{ $kelas->users()->count() }} siswa</span>
+        </div>
     </div>
 </a>

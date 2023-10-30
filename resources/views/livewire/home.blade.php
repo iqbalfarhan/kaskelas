@@ -35,6 +35,9 @@
                 <div class="stat-desc">Kelas {{ $kelas->name }}</div>
             </div>
         </div>
+        @if (auth()->user()->sekolah)
+            @livewire('sekolah.item', ['sekolah' => auth()->user()->sekolah])
+        @endif
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">

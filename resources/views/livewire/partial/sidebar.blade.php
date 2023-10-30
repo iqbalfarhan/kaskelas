@@ -11,7 +11,15 @@
                     <span>Dashboard</span>
                 </a>
             </li>
-           @can('kelas.index')
+            @can('user.index')
+                <li>
+                    <a href="{{ route('sekolah.index') }}" class="{{ $this->isActive(['sekolah.index', 'sekolah.show']) }}" wire:navigate>
+                        <x-tabler-building class="h-4 w-4" />
+                        <span>Data sekolah</span>
+                    </a>
+                </li>
+            @endcan
+            @can('kelas.index')
                 <li>
                     <a href="{{ route('kelas.index') }}" class="{{ $this->isActive(['kelas.index', 'kelas.show']) }}" wire:navigate>
                         <x-tabler-door class="h-4 w-4" />

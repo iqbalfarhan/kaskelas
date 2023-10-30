@@ -12,8 +12,8 @@
                 <div class="text-lg font-semibold">
                     {{ $user->name }}
                 </div>
-                <span class="text-sm opacity-75">{{ $user->nis }} &bull; Kelas : {{ $user->kelas->name ?? "tidak ada" }}</span>
-                <button class="badge badge-sm btn-primary">
+                <span class="text-sm opacity-75">{{ $user->nis }} &bull; {{ $user->kelas->name ?? "tidak ada" }} &bull; {{$user->sekolah->name}}</span>
+                <button class="badge badge-sm btn-primary capitalize">
                     {{ implode(', ', $user->getRoleNames()->toArray()) }}
                 </button>
             </div>

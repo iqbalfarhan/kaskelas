@@ -2,6 +2,8 @@
 
 namespace App\Livewire\User;
 
+use App\Models\Kelas;
+use App\Models\Sekolah;
 use App\Models\User;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
@@ -12,6 +14,8 @@ class Edit extends Component
     use LivewireAlert;
 
     public $user;
+    public $sekolah_id;
+    public $kelas_id;
     public $show = false;
     public $role;
 
@@ -37,7 +41,9 @@ class Edit extends Component
     public function render()
     {
         return view('livewire.user.edit', [
-            'roles' => Role::whereNot('name', 'superadmin')->pluck('name')
+            'roles' => Role::whereNot('name', 'superadmin')->pluck('name'),
+            'sekolahs' => Sekolah::pluck('name', 'id'),
+            'kelases' => Kelas::when($this->sekolah_id, fn($q) => $q->where('id', $this->sekolah_id))->pluck('name', 'id'),
         ]);
     }
 }

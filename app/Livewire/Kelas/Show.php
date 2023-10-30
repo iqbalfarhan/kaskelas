@@ -3,6 +3,7 @@
 namespace App\Livewire\Kelas;
 
 use App\Models\Kelas;
+use App\Models\Sekolah;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
@@ -11,6 +12,7 @@ class Show extends Component
     use LivewireAlert;
     public Kelas $kelas;
 
+    public $sekolah_id;
     public $kelas_id;
     public $name;
     public $angkatan;
@@ -26,6 +28,7 @@ class Show extends Component
         $this->angkatan = $kelas->angkatan;
         $this->walikelas = $kelas->walikelas;
         $this->telegram_group_id = $kelas->telegram_group_id;
+        $this->sekolah_id = $kelas->sekolah_id;
     }
 
     public function simpan()
@@ -35,6 +38,7 @@ class Show extends Component
             'angkatan' => '',
             'walikelas' => '',
             'telegram_group_id' => '',
+            'sekolah_id' => 'required',
         ]);
 
         if (Kelas::find($this->kelas_id)->update($valid)) {
@@ -47,6 +51,8 @@ class Show extends Component
 
     public function render()
     {
-        return view('livewire.kelas.show');
+        return view('livewire.kelas.show', [
+            'sekolahs' => Sekolah::pluck('name', 'id'),
+        ]);
     }
 }
