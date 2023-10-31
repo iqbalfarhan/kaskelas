@@ -72,7 +72,7 @@ class User extends Authenticatable
 
     public function getSekolahAttribute()
     {
-        return $this->kelas->sekolah;
+        return $this->kelas_id ? $this->kelas->sekolah : null;
     }
 
     public function transaksis()

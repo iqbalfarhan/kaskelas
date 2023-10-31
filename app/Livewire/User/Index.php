@@ -35,14 +35,14 @@ class Index extends Component
             $role->whereIn('name', ['siswa', 'bendahara']);
         })->when($this->cari, function ($q) {
             $q->where('name', 'like', '%' . $this->cari . '%')->orWhere('nis', 'like', '%' . $this->cari . '%');
-        })->when($this->kelas_id, function ($q) {
-            $q->where('kelas_id', $this->kelas_id);
-        })->paginate(15);
+        })->where('kelas_id', $this->kelas_id)->get();
 
         return view('livewire.user.index', [
             'datas' => $datas,
             'sekolah' => Sekolah::pluck('name', 'id'),
-            'kelases' => $this->sekolah_id ? Kelas::where('sekolah_id', $this->sekolah_id)->pluck('name', 'id') : [],
+            'kelases' => Kelas::when($this->sekolah_id, function ($q) {
+                $q->where('sekolah_id', $this->sekolah_id);
+            })->where('sekolah_id', $this->sekolah_id)->pluck('name', 'id'),
         ]);
     }
 }

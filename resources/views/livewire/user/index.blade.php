@@ -44,10 +44,6 @@
         </div>
     </div>
 
-    <div>
-        {{ $datas->links() }}
-    </div>
-
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         @foreach ($datas as $data)
             <a href="{{ route('user.show', $data->id) }}" wire:navigate wire:key="{{ $data->id }}">

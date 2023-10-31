@@ -23,7 +23,6 @@ class Edit extends Component
     {
         $this->validate([
             'role' => 'required',
-            'sekolah_id' => 'required',
             'kelas_id' => 'required',
         ]);
 
@@ -44,8 +43,9 @@ class Edit extends Component
     {
         $this->user = $user;
 
-        $this->sekolah_id = $user->sekolah_id;
         $this->kelas_id = $user->kelas_id;
+        $this->sekolah_id = $user->sekolah->id;
+        $this->role = $user->getRoleNames()->first();
     }
 
     public function render()
@@ -53,7 +53,7 @@ class Edit extends Component
         return view('livewire.user.edit', [
             'roles' => Role::whereNot('name', 'superadmin')->pluck('name'),
             'sekolahs' => Sekolah::pluck('name', 'id'),
-            'kelases' => Kelas::when($this->sekolah_id, fn($q) => $q->where('id', $this->sekolah_id))->pluck('name', 'id'),
+            'kelases' => Kelas::when($this->sekolah_id, fn($q) => $q->where('sekolah_id', $this->sekolah_id))->pluck('name', 'id'),
         ]);
     }
 }
