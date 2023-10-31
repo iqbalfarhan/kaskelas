@@ -67,7 +67,8 @@ class ApiController extends Controller
                     } elseif ($text == "/saldo" || $text == "/saldo@youth_financial_bot") {
                         $this->sendMessage("Rp. " . KasKelasHelper::money($kelas->saldo));
                     } elseif ($text == "/getid" || $text == "/getid@youth_financial_bot") {
-                        $this->sendMessage("telegram ID Group :" . $this->chat_id);
+                        $this->setParseMode("markdown");
+                        $this->sendMessage("telegram ID Group : ```" . $this->chat_id . "```");
                     } elseif ($text == "/belum" || $text == "/belum@youth_financial_bot") {
                         $users = count($kelas->belumBayar()) == 0 ? ["tidak ada"] : $kelas->belumBayar();
                         $pesan = implode("\n", [
