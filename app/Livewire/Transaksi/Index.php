@@ -43,9 +43,7 @@ class Index extends Component
         })->when($this->bulan, function ($q) {
             [$tahun, $bulan] = explode('-', $this->bulan);
             return $q->whereYear('created_at', $tahun)->whereMonth('created_at', $bulan);
-        })->when($this->kelas_id, function ($q) {
-            return $q->where('kelas_id', $this->kelas_id);
-        })->latest()->get();
+        })->where('kelas_id', $this->kelas_id)->latest()->get();
 
         return view('livewire.transaksi.index', [
             'datas' => $datas,
