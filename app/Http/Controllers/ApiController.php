@@ -57,6 +57,8 @@ class ApiController extends Controller
                 $is_command = true;
             }
 
+            return $this->sendMessage(json_encode($message));
+
             if ($is_command) {
                 $kelas = Kelas::where('telegram_group_id', $this->chat_id)->first();
                 if ($kelas) {
