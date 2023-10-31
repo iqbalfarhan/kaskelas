@@ -8,13 +8,21 @@
 
     <div class="flex gap-2">
         <input type="month" class="input input-bordered" wire:model.live='bulan'>
+        @can('sekolah.pilih')
+            <select wire:model.live="sekolah_id" class="select">
+                <option value="">---</option>
+                @foreach ($sekolah as $sklid => $sklname)
+                    <option value="{{ $sklid }}">{{ $sklname }}</option>
+                @endforeach
+            </select>
+        @endcan
         @can('kelas.pilih')
-        <select wire:model.live="kelas_id" class="select select-bordered @error('kelas_id') select-error @enderror">
-            <option value="">---</option>
-            @foreach ($kelases as $kelasid => $kelasname)
-                <option value="{{ $kelasid }}">{{ $kelasname }}</option>
-            @endforeach
-        </select>
+            <select wire:model.live="kelas_id" class="select select-bordered @error('kelas_id') select-error @enderror">
+                <option value="">---</option>
+                @foreach ($kelases as $kelasid => $kelasname)
+                    <option value="{{ $kelasid }}">{{ $kelasname }}</option>
+                @endforeach
+            </select>
         @endcan
     </div>
 
