@@ -3,6 +3,7 @@
 namespace App\Livewire\User;
 
 use App\Models\Kelas;
+use App\Models\Sekolah;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -19,6 +20,7 @@ class Create extends Component
     public $username;
     public $role = "siswa";
     public $nis;
+    public $sekolah_id;
     public $kelas_id;
     public $password;
 
@@ -46,8 +48,9 @@ class Create extends Component
     public function render()
     {
         return view('livewire.user.create', [
-            'roles' => Role::pluck('name'),
-            'kelases' => Kelas::pluck('name', 'id'),
+            'sekolah' => Sekolah::pluck('name', 'id'),
+            'kelases' => $this->sekolah_id ? Kelas::where('sekolah_id', $this->sekolah_id)->pluck('name', 'id') : [],
+            'roles' => Role::whereNot('name', 'superadmin')->pluck('name'),
         ]);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Livewire\Kelas;
 
 use App\Models\Kelas;
+use App\Models\Sekolah;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
@@ -13,6 +14,7 @@ class Create extends Component
 
     public $show;
     public $name;
+    public $sekolah_id;
     public $angkatan;
     public $walikelas = "...";
     public $telegram_group_id;
@@ -21,6 +23,7 @@ class Create extends Component
     {
         $valid = $this->validate([
             'name' => 'required',
+            'sekolah_id' => 'required',
             'angkatan' => '',
             'walikelas' => '',
             'telegram_group_id' => '',
@@ -38,6 +41,8 @@ class Create extends Component
 
     public function render()
     {
-        return view('livewire.kelas.create');
+        return view('livewire.kelas.create', [
+            'sekolahs' => Sekolah::pluck('name', 'id')
+        ]);
     }
 }

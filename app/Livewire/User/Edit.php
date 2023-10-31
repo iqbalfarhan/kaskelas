@@ -13,7 +13,7 @@ class Edit extends Component
 {
     use LivewireAlert;
 
-    public $user;
+    public User $user;
     public $sekolah_id;
     public $kelas_id;
     public $show = false;
@@ -22,7 +22,9 @@ class Edit extends Component
     public function simpan()
     {
         $this->validate([
-            'role' => 'required'
+            'role' => 'required',
+            'sekolah_id' => 'required',
+            'kelas_id' => 'required',
         ]);
 
         $user = User::find($this->user->id);
@@ -36,6 +38,14 @@ class Edit extends Component
         } else {
             $this->alert('error', 'Gagal ganti privilege');
         }
+    }
+
+    public function mount($user)
+    {
+        $this->user = $user;
+
+        $this->sekolah_id = $user->sekolah_id;
+        $this->kelas_id = $user->kelas_id;
     }
 
     public function render()

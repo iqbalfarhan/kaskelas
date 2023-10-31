@@ -13,6 +13,18 @@
         </div>
     </div>
 
+    <div class="flex gap-2">
+        <input type="text" class="input" wire:model.live="cari" placeholder="Cari kelas">
+        @can('sekolah.pilih')
+            <select wire:model.live="sekolah_id" class="select">
+                <option value="">---</option>
+                @foreach ($sekolah as $sklid => $sklname)
+                    <option value="{{ $sklid }}">{{ $sklname }}</option>
+                @endforeach
+            </select>
+        @endcan
+    </div>
+
     <div class="grid lg:grid-cols-3 gap-6">
         @foreach ($datas as $data)
             @livewire('kelas.item', ['kelas' => $data], key($data->id))

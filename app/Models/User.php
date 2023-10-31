@@ -24,6 +24,7 @@ class User extends Authenticatable
         'username',
         'nis',
         'kelas_id',
+        'sekolah_id',
         'password',
     ];
 
@@ -69,9 +70,9 @@ class User extends Authenticatable
         return $this->belongsTo(Kelas::class);
     }
 
-    public function sekolah()
+    public function getSekolahAttribute()
     {
-        return $this->belongsTo(Sekolah::class);
+        return $this->kelas->sekolah;
     }
 
     public function transaksis()

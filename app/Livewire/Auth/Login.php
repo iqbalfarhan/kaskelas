@@ -2,7 +2,9 @@
 
 namespace App\Livewire\Auth;
 
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
@@ -20,6 +22,8 @@ class Login extends Component
         ]);
 
         if (Auth::attempt($valid)) {
+            $user = User::where('username', $this->username)->first();
+            Session::put('sekolah_id', $user->sekolah_id);
             $this->flash('success', 'Login berhasil. selamat datang');
             return redirect()->route('home');
         } else {

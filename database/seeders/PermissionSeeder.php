@@ -28,6 +28,13 @@ class PermissionSeeder extends Seeder
             'kelas.delete',
             'kelas.pilih',
 
+            'sekolah.index',
+            'sekolah.create',
+            'sekolah.delete',
+            'sekolah.edit',
+            'sekolah.show',
+            'sekolah.pilih',
+
             'transaksi.index',
             'transaksi.masuk',
             'transaksi.keluar',

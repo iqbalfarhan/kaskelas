@@ -16,25 +16,9 @@
         </div>
     </div>
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <div class="stats shadow w-full">
-            <div class="stat">
-                <div class="stat-title">Saldo kas kelas</div>
-                <div class="stat-value">
-                    <div class="flex gap-2">
-                        <small>Rp.</small>
-                        <span>{{ KasKelas::money($kelas->saldo) }}</span>
-                    </div>
-                </div>
-                <div class="stat-desc">Per bulan {{ date('F Y') }}</div>
-            </div>
-        </div>
-        <div class="stats shadow w-full">
-            <div class="stat">
-                <div class="stat-title">Jumlah siswa</div>
-                <div class="stat-value">{{ $kelas->users->count() }}</div>
-                <div class="stat-desc">Kelas {{ $kelas->name }}</div>
-            </div>
-        </div>
+        @livewire('widget.saldo', ['kelas' => $kelas])
+        @livewire('widget.jumlah-siswa', ['kelas' => $kelas])
+        
         @if (auth()->user()->sekolah)
             @livewire('sekolah.item', ['sekolah' => auth()->user()->sekolah])
         @endif

@@ -6,6 +6,17 @@
             <div class="py-4">
                 <div class="form-control">
                     <label for="" class="label">
+                        <span class="label-text">Sekolah</span>
+                    </label>
+                    <select type="text" class="select select-bordered @error('sekolah_id') select-error @enderror" wire:model="sekolah_id">
+                        <option value="">---</option>
+                        @foreach ($sekolahs as $sklid => $sklname)
+                            <option value="{{ $sklid }}">{{ $sklname }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="" class="label">
                         <span class="label-text">Nama kelas</span>
                     </label>
                     <input type="text" class="input input-bordered @error('name') input-error @enderror" wire:model="name" />

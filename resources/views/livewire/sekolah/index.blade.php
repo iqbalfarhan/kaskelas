@@ -21,8 +21,9 @@
         <table class="table whitespace-nowrap">
             <thead class="border-b-4 border-base-200">
                 <th>ID</th>
-                <th>Nama sekolah</th>
                 <th>logo</th>
+                <th>Nama sekolah</th>
+                <th>kelas</th>
                 <th>Action</th>
             </thead>
             <tbody>
@@ -30,21 +31,22 @@
                     <tr>
                         <td>{{ $data->id }}</td>
                         <td>
-                            <div class="flex flex-col">
-                                <span>{{ $data->name }}</span>
-                                <span class="text-xs">{{ $data->address }}</span>
-                            </div>
-                        </td>
-                        <td>
                             <div class="avatar">
-                                <div class="w-12 rounded-lg">
+                                <div class="w-10 rounded-lg">
                                     <img src="{{ $data->logo_url }}" alt="{{ $data->logo_url }}">
                                 </div>
                             </div>
                         </td>
                         <td>
+                            <div class="flex flex-col">
+                                <span>{{ $data->name }}</span>
+                                <span class="text-xs">{{ Str::limit($data->address, 30) }}</span>
+                            </div>
+                        </td>
+                        <td>{{ $data->kelases->count() }} kelas</td>
+                        <td>
                             @can('sekolah.edit')
-                                <button class="btn btn-xs btn-success btn-square">
+                                <button class="btn btn-xs btn-success btn-square" wire:click="$dispatch('editSekolah', [{{ $data->id }}])">
                                     <x-tabler-edit class="w-4 h-4" />
                                 </button>
                             @endcan
@@ -61,4 +63,5 @@
     </div>
 
     @livewire('sekolah.create')
+    @livewire('sekolah.edit')
 </div>

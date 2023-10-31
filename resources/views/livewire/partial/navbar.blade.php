@@ -7,6 +7,7 @@
     <div class="navbar-center">
         <a href="{{ route('home') }}" class="btn btn-ghost normal-case text-xl">
             <span>{{ config('app.tagline') }}</span>
+            <span>{{ $sekolah->name ?? "" }}</span>
         </a>
         {{-- <img src="{{ url('YouFi.png') }}" alt="" class="w-8 self-center"> --}}
     </div>

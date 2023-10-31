@@ -25,4 +25,9 @@ class Sekolah extends Model
     {
         return $this->hasMany(Kelas::class);
     }
+
+    public function users()
+    {
+        return $this->hasManyThrough(User::class, Kelas::class);
+    }
 }

@@ -1,6 +1,6 @@
 <div class="card card-compact shadow bg-base-100">
     <div class="card-body flex flex-col lg:flex-row gap-4 justify-between lg:items-center">
-        <a href="{{ route('user.show', $user->id) }}" class="flex flex-row gap-4" wire:navigate>
+        <div class="flex flex-row gap-4">
             <div>
                 <div class="avatar placeholder">
                     <div class="w-16 aspect-square rounded-full bg-neutral-focus text-neutral-content">
@@ -12,12 +12,12 @@
                 <div class="text-lg font-semibold">
                     {{ $user->name }}
                 </div>
-                <span class="text-sm opacity-75">{{ $user->nis }} &bull; {{ $user->kelas->name ?? "tidak ada" }} &bull; {{$user->sekolah->name}}</span>
+                <span class="text-sm opacity-75">{{ $user->nis }} &bull; {{ $user->kelas->name ?? "tidak ada" }} &bull; {{$user->sekolah->name ?? ""}}</span>
                 <button class="badge badge-sm btn-primary capitalize">
                     {{ implode(', ', $user->getRoleNames()->toArray()) }}
                 </button>
             </div>
-        </a>
+        </div>
 
         @if ($withActions)
             <div class="flex gap-1 items-center">

@@ -21,7 +21,7 @@
             @endcan
             @can('kelas.index')
                 <li>
-                    <a href="{{ route('kelas.index') }}" class="{{ $this->isActive(['kelas.index', 'kelas.show']) }}" wire:navigate>
+                    <a href="{{ route('kelas.index') }}" class="{{ $this->isActive(['kelas.index', 'kelas.show', 'kelas.edit']) }}" wire:navigate>
                         <x-tabler-door class="h-4 w-4" />
                         <span>Data kelas</span>
                     </a>

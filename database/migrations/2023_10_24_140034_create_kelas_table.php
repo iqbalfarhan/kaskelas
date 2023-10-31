@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string('angkatan')->nullable();
             $table->string('walikelas')->nullable();
             $table->string('telegram_group_id')->nullable();
+            $table->foreignId('sekolah_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

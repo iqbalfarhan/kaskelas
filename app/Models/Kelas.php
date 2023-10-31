@@ -13,6 +13,7 @@ class Kelas extends Model
         'name',
         'angkatan',
         'walikelas',
+        'sekolah_id',
         'telegram_group_id',
     ];
 

@@ -3,56 +3,31 @@
 namespace App\Livewire\Kelas;
 
 use App\Models\Kelas;
-use App\Models\Sekolah;
-use Jantinnerezo\LivewireAlert\LivewireAlert;
+use App\Models\User;
 use Livewire\Component;
 
 class Show extends Component
 {
-    use LivewireAlert;
+    public $cari;
     public Kelas $kelas;
 
-    public $sekolah_id;
-    public $kelas_id;
-    public $name;
-    public $angkatan;
-    public $walikelas;
-    public $telegram_group_id;
+    protected $listeners = ['reload' => '$refresh'];
 
-    public function mount(Kelas $kelas)
+    public function mount()
     {
-        $this->kelas = $kelas;
-
-        $this->kelas_id = $kelas->id;
-        $this->name = $kelas->name;
-        $this->angkatan = $kelas->angkatan;
-        $this->walikelas = $kelas->walikelas;
-        $this->telegram_group_id = $kelas->telegram_group_id;
-        $this->sekolah_id = $kelas->sekolah_id;
-    }
-
-    public function simpan()
-    {
-        $valid = $this->validate([
-            'name' => '',
-            'angkatan' => '',
-            'walikelas' => '',
-            'telegram_group_id' => '',
-            'sekolah_id' => 'required',
-        ]);
-
-        if (Kelas::find($this->kelas_id)->update($valid)) {
-            $this->flash('success', 'Berhasil update keterangan kelas');
-            return redirect()->route('kelas.index');
-        } else {
-            $this->alert('error', 'Gagal update keterangan kelas');
-        }
+        // $this->kelas_id = auth()->user()->kelas_id ?? Kelas::first()->id;
     }
 
     public function render()
     {
+        $datas = User::where('kelas_id', $this->kelas->id)->whereHas('roles', function ($role) {
+            $role->whereIn('name', ['siswa', 'bendahara']);
+        })->when($this->cari, function ($q) {
+            $q->where('name', 'like', '%' . $this->cari . '%')->orWhere('nis', 'like', '%' . $this->cari . '%');
+        })->get();
+
         return view('livewire.kelas.show', [
-            'sekolahs' => Sekolah::pluck('name', 'id'),
+            'datas' => $datas,
         ]);
     }
 }
