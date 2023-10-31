@@ -2,12 +2,25 @@
     <div class="flex justify-between items-center">
         @livewire('partial.header', [
             'title' => 'Input pengeluaran',
-            'desc' => 'penggunaan uang kas kelas'
+            'desc' => 'penggunaan uang kas kelas '.($kelases[$kelas_id])
         ])
     </div>
     <div class="card bg-base-100 shadow">
         <form class="card-body" wire:submit.prevent="simpan">
             <div class="grid lg:grid-cols-3 gap-4">
+                @can('sekolah.pilih')
+                    <div class="form-control w-full">
+                            <label for="" class="label">
+                                <span class="label-text">Pilih Sekolah</span>
+                            </label>
+                        <select wire:model.live="sekolah_id" class="select select-bordered @error('kelas_id') select-error @enderror">
+                            <option value="">---</option>
+                            @foreach ($sekolah as $sklid => $sklname)
+                                <option value="{{ $sklid }}">{{ $sklname }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                @endcan
                 @can('kelas.pilih')
                     <div class="form-control w-full">
                         <label for="" class="label">

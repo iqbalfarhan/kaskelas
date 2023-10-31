@@ -3,6 +3,7 @@
 namespace App\Livewire\Transaksi;
 
 use App\Models\Kelas;
+use App\Models\Sekolah;
 use App\Models\Transaksi;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
@@ -22,6 +23,7 @@ class Keluar extends Component
     public $nominal;
     public $keterangan;
     public $photo;
+    public $sekolah_id;
 
 
     public function simpan()
@@ -56,13 +58,15 @@ class Keluar extends Component
     public function mount()
     {
         $this->bulan = date('Y-m');
+        $this->sekolah_id = auth()->user()->kelas->sekolah->id ?? Sekolah::first()->id;
         $this->kelas_id = auth()->user()->kelas_id ?? Kelas::first()->id;
     }
 
     public function render()
     {
         return view('livewire.transaksi.keluar', [
-            'kelases' => Kelas::pluck('name', 'id'),
+            'sekolah' => Sekolah::pluck('name', 'id'),
+            'kelases' => Kelas::where('sekolah_id', $this->sekolah_id)->pluck('name', 'id'),
         ]);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Livewire\Transaksi;
 
 use App\Models\Kelas;
+use App\Models\Sekolah;
 use App\Models\Transaksi;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
@@ -13,6 +14,7 @@ class Index extends Component
     public $user_id;
     public $kelas_id;
     public $bulan;
+    public $sekolah_id;
 
     public function mount()
     {
@@ -22,7 +24,8 @@ class Index extends Component
             $this->user_id = auth()->id();
         }
 
-        $this->kelas_id = $user->kelas_id ?? Kelas::first()->id;
+        $this->sekolah_id = auth()->user()->kelas->sekolah->id ?? Sekolah::first()->id;
+        $this->kelas_id = auth()->user()->kelas_id ?? Kelas::first()->id;
 
         $this->bulan = date('Y-m');
     }

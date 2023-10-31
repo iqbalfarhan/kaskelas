@@ -3,6 +3,7 @@
 namespace App\Livewire\Transaksi;
 
 use App\Models\Kelas;
+use App\Models\Sekolah;
 use App\Models\Transaksi;
 use App\Models\User;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
@@ -18,6 +19,7 @@ class Masuk extends Component
     public $kategori = 'rutin';
     public $nominal;
     public $keterangan;
+    public $sekolah_id;
 
 
     public function simpan()
@@ -40,8 +42,10 @@ class Masuk extends Component
         }
     }
 
-    public function mount(){
+    public function mount()
+    {
         $this->bulan = date('Y-m');
+        $this->sekolah_id = auth()->user()->kelas->sekolah->id ?? Sekolah::first()->id;
         $this->kelas_id = auth()->user()->kelas_id ?? Kelas::first()->id;
     }
 
@@ -53,7 +57,8 @@ class Masuk extends Component
 
         return view('livewire.transaksi.masuk', [
             'users' => $users,
-            'kelases' => Kelas::pluck('name', 'id'),
+            'sekolah' => Sekolah::pluck('name', 'id'),
+            'kelases' => Kelas::where('sekolah_id', $this->sekolah_id)->pluck('name', 'id'),
         ]);
     }
 }
