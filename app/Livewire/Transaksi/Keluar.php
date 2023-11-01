@@ -57,7 +57,11 @@ class Keluar extends Component
 
     public function updatedSekolahId($sekolah_id)
     {
-        $this->kelas_id = Sekolah::find($sekolah_id)->kelases->first()->id;
+        if ($sekolah_id) {
+            $this->kelas_id = Sekolah::find($sekolah_id)->kelases->first()->id;
+        } else {
+            $this->kelas_id = null;
+        }
     }
 
     public function mount()
