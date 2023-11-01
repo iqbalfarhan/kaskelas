@@ -18,12 +18,10 @@
         @endcan
         @can('kelas.pilih')
             <select wire:model.live="kelas_id" class="select select-bordered @error('kelas_id') select-error @enderror">
-                <option value="">---</option>
                 @foreach ($kelases as $kelasid => $kelasname)
                     <option value="{{ $kelasid }}">{{ $kelasname }}</option>
                 @endforeach
             </select>
-            {{ $kelas_id }}
         @endcan
     </div>
 
