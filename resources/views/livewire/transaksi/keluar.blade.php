@@ -2,7 +2,7 @@
     <div class="flex justify-between items-center">
         @livewire('partial.header', [
             'title' => 'Input pengeluaran',
-            'desc' => 'penggunaan uang kas kelas '.($kelases[$kelas_id])
+            'desc' => 'penggunaan uang kas kelas '.($kelases[$kelas_id] ?? "")
         ])
     </div>
     <div class="card bg-base-100 shadow">
