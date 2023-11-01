@@ -55,6 +55,11 @@ class Keluar extends Component
         }
     }
 
+    public function udpatedSekolahId()
+    {
+        $this->kelas_id = '';
+    }
+
     public function mount()
     {
         $this->bulan = date('Y-m');
