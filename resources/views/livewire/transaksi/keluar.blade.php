@@ -31,8 +31,6 @@
                                 <option value="{{ $kelasid }}">{{ $kelasname }}</option>
                             @endforeach
                         </select>
-
-                        <label for="" class="label">{{ $kelas_id }}</label>
                     </div>
                 @endcan
                 <div class="form-control w-full">
