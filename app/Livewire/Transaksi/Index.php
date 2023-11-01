@@ -30,6 +30,11 @@ class Index extends Component
         $this->bulan = date('Y-m');
     }
 
+    public function updatedSekolahId($sekolah_id)
+    {
+        $this->kelas_id = Sekolah::find($sekolah_id)->kelases->first()->id;
+    }
+
     public function deleteTransaksi(Transaksi $transaksi)
     {
         $transaksi->delete();
