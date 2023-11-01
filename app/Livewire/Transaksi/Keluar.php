@@ -55,9 +55,9 @@ class Keluar extends Component
         }
     }
 
-    public function udpatedSekolahId()
+    public function udpatedSekolahId($sekolah_id)
     {
-        $this->kelas_id = '';
+        $this->kelas_id = Sekolah::find($sekolah_id)->kelases->first()->id;
     }
 
     public function mount()
