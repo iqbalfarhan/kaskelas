@@ -53,7 +53,7 @@ class Index extends Component
         return view('livewire.transaksi.index', [
             'datas' => $datas,
             'sekolah' => Sekolah::pluck('name', 'id'),
-            'kelases' => Kelas::where('sekolah_id', $this->sekolah_id)->pluck('name', 'id'),
+            'kelases' => $this->sekolah_id ? Kelas::where('sekolah_id', $this->sekolah_id)->pluck('name', 'id') : [],
         ]);
     }
 }

@@ -71,7 +71,7 @@ class Keluar extends Component
     {
         return view('livewire.transaksi.keluar', [
             'sekolah' => Sekolah::pluck('name', 'id'),
-            'kelases' => Kelas::where('sekolah_id', $this->sekolah_id)->pluck('name', 'id'),
+            'kelases' => $this->sekolah_id ? Kelas::where('sekolah_id', $this->sekolah_id)->pluck('name', 'id') : [],
         ]);
     }
 }
