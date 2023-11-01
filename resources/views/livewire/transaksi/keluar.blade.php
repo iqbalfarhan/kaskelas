@@ -27,7 +27,6 @@
                             <span class="label-text">Pilih kelas</span>
                         </label>
                         <select wire:model="kelas_id" class="select select-bordered @error('kelas_id') select-error @enderror">
-                            <option value="">---</option>
                             @foreach ($kelases as $kelasid => $kelasname)
                                 <option value="{{ $kelasid }}">{{ $kelasname }}</option>
                             @endforeach
