@@ -23,6 +23,7 @@
                     <option value="{{ $kelasid }}">{{ $kelasname }}</option>
                 @endforeach
             </select>
+            {{ $kelas_id }}
         @endcan
     </div>
 
