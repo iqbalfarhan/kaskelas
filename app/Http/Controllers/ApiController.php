@@ -66,6 +66,8 @@ class ApiController extends Controller
                         Artisan::call('bot:reminder ' . $kelas->id);
                     } elseif ($text == "/saldo" || $text == "/saldo@youth_financial_bot") {
                         $this->sendMessage("Rp. " . KasKelasHelper::money($kelas->saldo));
+                    } elseif ($text == "/hai" || $text == "/hai@youth_financial_bot") {
+                        $this->sendMessage("Hai juga");
                     } elseif ($text == "/getid" || $text == "/getid@youth_financial_bot") {
                         $this->setParseMode("markdown");
                         $this->sendMessage("telegram ID Group : ```" . $this->chat_id . "```");
