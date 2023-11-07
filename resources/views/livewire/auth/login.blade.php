@@ -21,5 +21,8 @@
                 <span>Login</span>
             </button>
         </div>
+        <div class="text-center py-4">
+            <a href="{{ route('register') }}" class="text-xs">Daftar disini</a>
+        </div>
     </form>
 </div>

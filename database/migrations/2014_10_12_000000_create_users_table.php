@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->string('password');
             $table->foreignId('kelas_id')->nullable();
             $table->string('nis')->nullable();
+            $table->boolean('active')->default(false);
             $table->timestamps();
         });
     }

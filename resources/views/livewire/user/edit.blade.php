@@ -37,6 +37,15 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="form-control">
+                    <label for="" class="label">
+                        <span class="label-text">Status aktif akun</span>
+                    </label>
+                    <select type="text" class="select select-bordered" wire:model.live="active">
+                        <option value="true">Aktif</option>
+                        <option value="false">Tidak Aktif</option>
+                    </select>
+                </div>
             </div>
             <div class="modal-action justify-between">
                 <label for="editModal" class="btn">Close!</label>

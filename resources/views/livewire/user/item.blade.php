@@ -2,7 +2,7 @@
     <div class="card-body flex flex-col lg:flex-row gap-4 justify-between lg:items-center">
         <div class="flex flex-row gap-4">
             <div>
-                <div class="avatar placeholder">
+                <div class="avatar placeholder {{ $user->active ? 'online' : '' }}">
                     <div class="w-16 aspect-square rounded-full bg-neutral-focus text-neutral-content">
                         <span class="text-lg">{{ $user->initial }}</span>
                     </div>

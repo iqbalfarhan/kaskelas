@@ -23,8 +23,9 @@ class DatabaseSeeder extends Seeder
 
         $user = User::create([
             'name' => 'Iqbal Farhan Syuhada',
-            'username' => 'iqbal',
+            'username' => 'super',
             'nis' => "132010040002",
+            'active' => true,
             'password' => Hash::make('offz1331'),
         ]);
         $user->assignRole('superadmin');
@@ -33,6 +34,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Administrator',
             'username' => 'admin',
             'nis' => "123456",
+            'active' => true,
             'password' => Hash::make('youfi123'),
         ]);
         $admin->assignRole('admin');

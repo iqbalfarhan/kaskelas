@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Transaksi;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +19,15 @@ Route::get('/', fn() => redirect()->route('login'))->name('welcome');
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', \App\Livewire\Auth\Login::class)->name('login');
+    Route::get('/register', \App\Livewire\Auth\Register::class)->name('register');
+});
+
+Route::get('/test', function () {
+    return $transaksi = Transaksi::pluck('user_id');
+});
+
+Route::post('/posttest', function () {
+    return "ini contoh post";
 });
 
 Route::middleware('auth')->group(function () {

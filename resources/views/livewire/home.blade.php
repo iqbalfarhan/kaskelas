@@ -38,4 +38,5 @@
     </div>
 
     @livewire('widget.last-transaksi', ['kelas_id' => $kelas->id])
+    @livewire('partial.cekuser')
 </div>

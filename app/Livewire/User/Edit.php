@@ -18,6 +18,7 @@ class Edit extends Component
     public $kelas_id;
     public $show = false;
     public $role;
+    public $active;
 
     public function simpan()
     {
@@ -30,6 +31,10 @@ class Edit extends Component
 
         if ($user->syncRoles($this->role)) {
             $this->alert('success', 'Berhasil ganti privilege');
+            $user->update([
+                'kelas_id' => $this->kelas_id,
+                'active' => $this->active == "true" ? true : false,
+            ]);
             $this->reset(
                 'show'
             );
@@ -44,6 +49,7 @@ class Edit extends Component
         $this->user = $user;
 
         $this->kelas_id = $user->kelas_id;
+        $this->active = $user->active ? true : false;
         $this->sekolah_id = $user->sekolah->id;
         $this->role = $user->getRoleNames()->first();
     }

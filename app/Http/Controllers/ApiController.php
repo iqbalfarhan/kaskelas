@@ -72,14 +72,17 @@ class ApiController extends Controller
                         $this->setParseMode("markdown");
                         $this->sendMessage("telegram ID Group : ```" . $this->chat_id . "```");
                     } elseif ($text == "/belum" || $text == "/belum@youth_financial_bot") {
+
                         $users = count($kelas->belumBayar()) == 0 ? ["tidak ada"] : $kelas->belumBayar();
                         $pesan = implode("\n", [
                             "***List siswa belum bayar kas bulan ini***",
                             "",
                             implode("\n", $users)
                         ]);
+
                         $this->setParseMode('markdown');
                         $this->sendMessage($pesan);
+
                     } elseif ($text == "/sudah" || $text == "/sudah@youth_financial_bot") {
                         $users = count($kelas->sudahBayar()) == 0 ? ["tidak ada"] : $kelas->sudahBayar();
                         $pesan = implode("\n", [

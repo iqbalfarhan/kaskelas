@@ -49,6 +49,7 @@ class UserSeeder extends Seeder
             $nis = $data['nis'];
             $data['username'] = $nis;
             $data['password'] = Hash::make($nis);
+            $data['active'] = true;
             $user = User::create($data);
 
             if (in_array($data['nis'], ['1101', '1201'])) {
