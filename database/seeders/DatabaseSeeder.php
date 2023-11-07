@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             'username' => 'super',
             'nis' => "132010040002",
             'active' => true,
-            'password' => Hash::make('offz1331'),
+            'password' => Hash::make('youfi123'),
         ]);
         $user->assignRole('superadmin');
 
