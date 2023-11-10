@@ -22,3 +22,7 @@ Route::get('/', [\App\Http\Controllers\ApiController::class, 'index'])->name('ap
 Route::get('/tele/tester', [\App\Http\Controllers\ApiController::class, 'teletester'])->name('tele.tester');
 Route::post('/telegram', [\App\Http\Controllers\ApiController::class, 'telegram'])->name('telegram');
 Route::get('/telegram/setWebhook', [\App\Http\Controllers\ApiController::class, 'updatewebhook']);
+
+Route::get('gitpull', function(){
+    shell_exec('cd /var/www/youfi && git pull');
+});
