@@ -27,7 +27,7 @@ class TransactionObserver
             $this->setChatId($chat_id);
         }
 
-        $this->setParseMode('html');
+        $this->setParseMode('markdown');
         $this->sendMessage($message);
     }
 
