@@ -24,5 +24,6 @@ Route::post('/telegram', [\App\Http\Controllers\ApiController::class, 'telegram'
 Route::get('/telegram/setWebhook', [\App\Http\Controllers\ApiController::class, 'updatewebhook']);
 
 Route::get('gitpull', function(){
-    shell_exec('cd /var/www/youfi && git pull');
+    $output = shell_exec('cd /var/www/youfi && git pull');
+    return Response::make($output, 200);
 });
