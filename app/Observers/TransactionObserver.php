@@ -17,8 +17,8 @@ class TransactionObserver
     {
         $tipe = $transaksi->tipe == "masuk" ? "pemasukan" : "poengeluaran";
         $chat_id = $transaksi->kelas->telegram_group_id ?? null;
-        $message = implode('\n', [
-            "**Input ".$tipe." berhasil**\n",
+        $message = implode("\n", [
+            "***Input ".$tipe." berhasil***\n",
             "keterangan : ".$transaksi->keterangan,
             "nominal : Rp.".KasKelasHelper::money($transaksi->nominal ?? 0),
         ]);
